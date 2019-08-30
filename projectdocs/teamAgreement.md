@@ -1,10 +1,10 @@
-#Code Against Humanity - Team Agreement
+# Code Against Humanity - Team Agreement
 
 ## Roles
 
-** Project Manager: Renee Messik **
+**Project Manager: Renee Messik**
 
-** Agile Scrum Leader: Jane Hur **
+**Agile Scrum Leader: Jane Hur**
 
 * Team's morning scrum
   * Decide on what needs to be completed that day
