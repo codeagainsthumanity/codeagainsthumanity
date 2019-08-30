@@ -18,4 +18,4 @@
 
 ## How and when will you escalate the conflict resolution?
 
--
+- If no agreements can be resolved, despite our best efforts to follow the above agreement, we will escalate to the instructor for a resolution.
