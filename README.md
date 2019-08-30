@@ -1,5 +1,4 @@
-# codeagainsthumanity
-#Code Against Humanity - Overview
+# Code Against Humanity - Overview
 
 Team members: Jack Kinne, Renee Messik, Jane Hur
 
