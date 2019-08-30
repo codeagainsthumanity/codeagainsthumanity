@@ -13,7 +13,7 @@
 * Afternoon scrum
   * Review what was completed
   * Adjust scope/MVP/next day's goals as needed
-* Update 
+* Update daily change log
 
 ## Communication Plan
 ### How will you communicate after hours and on the weekend?
