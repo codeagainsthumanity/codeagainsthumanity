@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link th:replace="fragments/css :: css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Code Against Humanity</title>
 </head>
 <body>
+<nav th:replace="fragments/nav :: nav" class="nav"></nav>
+<div class="container">
 
+<h1>Homepage</h1>
+
+Routes:
+<ul>
+    <li><a href="http://localhost:8080/login">http://localhost:8080/login</a></li>
+    <li><a href="http://localhost:8080/registration">http://localhost:8080/registration</a></li>
+    <li><a href="http://localhost:8080/profile">http://localhost:8080/profile</a></li>
+</ul>
+</div>
 </body>
 </html>
