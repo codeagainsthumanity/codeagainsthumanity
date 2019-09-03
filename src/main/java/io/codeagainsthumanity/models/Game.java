@@ -44,7 +44,7 @@ public class Game {
         this.showRules = true;
         this.statusOfGame = "New Game";
         this.gameCode = gameCode;
-        this.players.set(0, gameOwner);
+
     }
 
 
