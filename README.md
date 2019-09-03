@@ -1,6 +1,6 @@
 # Code Against Humanity - Overview
 
-Team members: Jack Kinne, Renee Messick, Jane Hur
+Team members: Jane Hur, Jack Kinne, Renee Messick
 
 ## Project overview:
 
