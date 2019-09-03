@@ -15,6 +15,9 @@ public class WhiteCard {
     @ManyToOne
     Game gameInstance;
 
+    @ManyToOne
+    Deck deck;
+
 
     public WhiteCard(String body, ApplicationUser player, Game gameInstance) {
         this.body = body;
