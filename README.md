@@ -1,6 +1,6 @@
 # Code Against Humanity - Overview
 
-Team members: Jack Kinne, Renee Messik, Jane Hur
+Team members: Jack Kinne, Renee Messick, Jane Hur
 
 ## Project overview:
 
@@ -44,3 +44,9 @@ Code Against Humanity is a web version of the popular game, [Cards Against Human
 - Screenshots of the application
 - A link to the deployed application
 - A list of technologies used in the application
+
+Resources:
+
+https://www.baeldung.com/jpa-one-to-one
+
+https://www.baeldung.com/spring-data-rest-relationships
