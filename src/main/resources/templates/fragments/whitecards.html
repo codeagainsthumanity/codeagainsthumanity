@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:fragment="toplay" class="container whitecards">
+        <h2>Select a white card to play</h2>
+        <form>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc1">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc2">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc3">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc4">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc5">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc6">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc7">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+
+
+            <br>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+
+        </form>
+    </div>
+
+
+
+
+    <div th:fragment="tojudge" class="container whitecards">
+        <h2>Select your favorite!</h2>
+        <form>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="winner" value="answer2">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="winner" value="answer3">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+
+
+
+            <br>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+
+        </form>
+    </div>
+</html>

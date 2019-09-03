@@ -33,5 +33,11 @@ public class GameController {
         return "gameroom";
     }
 
+    @GetMapping("/gameroom")
+    public String getGameRoom(Principal p, Model m){
+            m.addAttribute("principalUser", p);
+            return "gameroom";
+    }
+
 
 }
