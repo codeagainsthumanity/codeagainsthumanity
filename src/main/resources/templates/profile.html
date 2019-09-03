@@ -4,6 +4,7 @@
     <link th:replace="fragments/css :: css">
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:replace="fragments/css :: css" ></link>
 </head>
 <body>
 <nav th:replace="fragments/nav :: nav" class="nav"></nav>
@@ -11,5 +12,6 @@
     <h1>Profile: <span th:text="${user.fullName}"></span></h1>
     <p>Profile details will go here.</p>
 </div>
+<div th:replace="fragments/css :: js" ></div>
 </body>
 </html>
