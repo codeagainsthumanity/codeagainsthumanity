@@ -29,9 +29,6 @@ public class GameController {
     public String getAllGames(Principal p, Model m) {
         ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
         List<Game> myGameInstances = new LinkedList<>();
-        for (Game gameInstance : myGameInstances) {
-            myGameInstances.addAll(getStatusOfGame());
-        }
         m.addAttribute("games", myGameInstances);
         return "gameroom";
     }
