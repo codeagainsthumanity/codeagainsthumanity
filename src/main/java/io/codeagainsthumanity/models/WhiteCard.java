@@ -25,6 +25,10 @@ public class WhiteCard {
         this.gameInstance = gameInstance;
     }
 
+    public WhiteCard(String body) {
+        this.body = body;
+    }
+
     // getters and setters
     public long getId() {
         return id;

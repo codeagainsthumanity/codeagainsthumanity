@@ -6,7 +6,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 import java.io.IOException;
 
-import static io.codeagainsthumanity.PopulateDeckGSON.readFileGson;
+import static io.codeagainsthumanity.PopulateDeckGSON.readBlackFileGSON;
+import static io.codeagainsthumanity.PopulateDeckGSON.readWhiteFileGSON;
 
 @SpringBootApplication
 public class CodeagainsthumanityApplication extends SpringBootServletInitializer {
@@ -17,7 +18,8 @@ public class CodeagainsthumanityApplication extends SpringBootServletInitializer
 		System.out.println("http://localhost:8080/login");
 		System.out.println("http://localhost:8080/registration");
 
-		readFileGson();
+		readWhiteFileGSON();
+		readBlackFileGSON();
 	}
 
 }
