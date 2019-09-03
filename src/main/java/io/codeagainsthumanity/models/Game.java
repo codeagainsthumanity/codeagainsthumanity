@@ -46,10 +46,8 @@ public class Game {
         this.showRules = true;
         this.statusOfGame = "New Game";
         this.gameCode = gameCode;
-<<<<<<< HEAD
-=======
+
         this.players = createPlayerList(gameOwner);
->>>>>>> 1ce37ad49657c8874953f2bae69326d90d7db0f6
 
     }
 
