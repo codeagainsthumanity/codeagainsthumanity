@@ -15,7 +15,7 @@ public class PopulateDeckDB {
     public void readFilePopDB() throws IOException {
         try {
             //File bmp = new File("/scripts/cards.json");
-            
+
             // parsing file "JSONExample.json"
             Object obj = new JSONParser().parse(new FileReader("scripts/cards.json"));
 
