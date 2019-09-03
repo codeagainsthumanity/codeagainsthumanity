@@ -16,6 +16,9 @@ public class BlackCard {
     @ManyToOne
     ApplicationUser player;
 
+    @ManyToOne
+    Deck deck;
+
 
     public BlackCard(String body, Game gameInstance) {
         this.body = body;
