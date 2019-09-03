@@ -3,26 +3,26 @@ package io.codeagainsthumanity.models;
 import javax.persistence.*;
 
 @Entity
-public class BlackCard {
-
+public class WhiteCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String body;
 
     @ManyToOne
-    Game gameInstance;
-
-    @ManyToOne
     ApplicationUser player;
 
+    @ManyToOne
+    Game gameInstance;
 
-    public BlackCard(String body, Game gameInstance) {
+
+    public WhiteCard(String body, ApplicationUser player, Game gameInstance) {
         this.body = body;
+        this.player = player;
         this.gameInstance = gameInstance;
     }
 
-    //getters and setters
+    // getters and setters
     public long getId() {
         return id;
     }
@@ -39,20 +39,20 @@ public class BlackCard {
         this.body = body;
     }
 
-    public Game getGameInstance() {
-        return gameInstance;
-    }
-
-    public void setGameInstance(Game gameInstance) {
-        this.gameInstance = gameInstance;
-    }
-
     public ApplicationUser getPlayer() {
         return player;
     }
 
     public void setPlayer(ApplicationUser player) {
         this.player = player;
+    }
+
+    public Game getGameInstance() {
+        return gameInstance;
+    }
+
+    public void setGameInstance(Game gameInstance) {
+        this.gameInstance = gameInstance;
     }
 
 }
