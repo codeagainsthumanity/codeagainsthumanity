@@ -1,6 +1,11 @@
 package io.codeagainsthumanity.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +17,39 @@ public class Game {
     long id;
     boolean showRules;
     String statusOfGame;
+    String roomCode;
+
+    @CreationTimestamp
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Date createdAt;
+
+    public String getRoomCode() {
+        return roomCode;
+    }
+
+    public void setRoomCode(String roomCode) {
+        this.roomCode = roomCode;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Time getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Time updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @UpdateTimestamp
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Time updatedAt;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
     Set<ApplicationUser> player;
@@ -25,6 +63,11 @@ public class Game {
     @OneToOne(mappedBy = "gameInstance")
     BlackCard activeBlackCard;
 
+    public Game(boolean showRules, String statusOfGame, String roomCode) {
+        this.showRules = showRules;
+        this.statusOfGame = statusOfGame;
+        this.roomCode = roomCode;
+    }
     public long getId() {
         return id;
     }
