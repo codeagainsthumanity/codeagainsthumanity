@@ -1,6 +1,12 @@
 package io.codeagainsthumanity.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -12,18 +18,55 @@ public class Game {
     long id;
     boolean showRules;
     String statusOfGame;
+    double gameCode;
+
+    @CreationTimestamp
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Date createdAt;
+
+    @UpdateTimestamp
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Time updatedAt;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-    Set<ApplicationUser> player;
+    List<ApplicationUser> players;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-    Set<WhiteCard> currentWhiteDeck;
+    List<WhiteCard> currentWhiteDeck;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-    Set<BlackCard> currentBlackDeck;
+    List<BlackCard> currentBlackDeck;
 
     @OneToOne(mappedBy = "gameInstance")
     BlackCard activeBlackCard;
+
+    public Game(ApplicationUser gameOwner, double gameCode) {
+        this.showRules = true;
+        this.statusOfGame = "New Game";
+        this.gameCode = gameCode;
+        this.players.set(0, gameOwner);
+    }
+
+
+    public double getRoomCode() {
+        return gameCode;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Time getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Time updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public long getId() {
         return id;
@@ -41,27 +84,27 @@ public class Game {
         this.showRules = showRules;
     }
 
-    public Set<ApplicationUser> getPlayer() {
-        return player;
+    public List<ApplicationUser> getPlayer() {
+        return players;
     }
 
-    public void setPlayer(Set<ApplicationUser> player) {
-        this.player = player;
+    public void setPlayer(ArrayList<ApplicationUser> players) {
+        this.players = players;
     }
 
-    public Set<WhiteCard> getCurrentWhiteCard() {
+    public List<WhiteCard> getCurrentWhiteCard() {
         return currentWhiteDeck;
     }
 
-    public void setCurrentWhiteCard(Set<WhiteCard> currentWhiteCard) {
+    public void setCurrentWhiteCard(ArrayList<WhiteCard> currentWhiteCard) {
         this.currentWhiteDeck = currentWhiteCard;
     }
 
-    public Set<BlackCard> getCurrentBlackCard() {
+    public List<BlackCard> getCurrentBlackCard() {
         return currentBlackDeck;
     }
 
-    public void setCurrentBlackCard(Set<BlackCard> currentBlackCard) {
+    public void setCurrentBlackCard(ArrayList<BlackCard> currentBlackCard) {
         this.currentBlackDeck = currentBlackCard;
     }
 
@@ -77,19 +120,19 @@ public class Game {
         this.statusOfGame = statusOfGame;
     }
 
-    public Set<WhiteCard> getCurrentWhiteDeck() {
+    public List<WhiteCard> getCurrentWhiteDeck() {
         return currentWhiteDeck;
     }
 
-    public void setCurrentWhiteDeck(Set<WhiteCard> currentWhiteDeck) {
+    public void setCurrentWhiteDeck(ArrayList<WhiteCard> currentWhiteDeck) {
         this.currentWhiteDeck = currentWhiteDeck;
     }
 
-    public Set<BlackCard> getCurrentBlackDeck() {
+    public List<BlackCard> getCurrentBlackDeck() {
         return currentBlackDeck;
     }
 
-    public void setCurrentBlackDeck(Set<BlackCard> currentBlackDeck) {
+    public void setCurrentBlackDeck(ArrayList<BlackCard> currentBlackDeck) {
         this.currentBlackDeck = currentBlackDeck;
     }
 
