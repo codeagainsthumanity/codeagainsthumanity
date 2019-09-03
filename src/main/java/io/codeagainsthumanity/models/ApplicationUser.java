@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -25,8 +26,14 @@ public class ApplicationUser implements UserDetails {
     @ManyToOne
     ApplicationUser player;
 
-    @ManyToOne
-    Game gameInstance;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "gamesPlayed",
+            joinColumns = @JoinColumn(name="player", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="game", referencedColumnName = "id")
+            )
+    List<Game> myGames;
+
     // constructors
     public ApplicationUser(){}
 

@@ -28,7 +28,7 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Time updatedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
+    @ManyToMany (mappedBy = "myGames")
     List<ApplicationUser> players;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
@@ -40,15 +40,28 @@ public class Game {
     @OneToOne(mappedBy = "gameInstance")
     BlackCard activeBlackCard;
 
+    public Game(){};
+
     public Game(ApplicationUser gameOwner, double gameCode) {
         this.showRules = true;
         this.statusOfGame = "New Game";
         this.gameCode = gameCode;
+<<<<<<< HEAD
+=======
+        this.players = createPlayerList(gameOwner);
+>>>>>>> 1ce37ad49657c8874953f2bae69326d90d7db0f6
 
     }
 
+    public ArrayList<ApplicationUser> createPlayerList(ApplicationUser gameOwner){
+        ArrayList<ApplicationUser> newPlayerList = new ArrayList<>();
+        newPlayerList.add(gameOwner);
+        return newPlayerList;
+    }
 
-    public double getRoomCode() {
+
+
+    public double getGameCode() {
         return gameCode;
     }
 

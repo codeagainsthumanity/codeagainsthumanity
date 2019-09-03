@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -46,6 +47,13 @@ public class GameController {
         gameRepository.save(newGame);
 
         return new RedirectView("/game/" + gameCode);
+    }
+
+    @GetMapping ("/game/{gameCode}")
+    public String getGame(Principal p, Model m, @PathVariable double gameCode){
+        m.addAttribute("currentGame", gameRepository.findByGameCode(gameCode));
+        m.addAttribute("principalUser", p);
+        return "gameroom";
     }
 
     @GetMapping("/gameroom")

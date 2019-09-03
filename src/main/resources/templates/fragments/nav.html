@@ -17,6 +17,11 @@
         <li class="nav-item"><a href="#" class="nav-link">Rules</a></li>
         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
       </ul>
+
+      <form class="form-inline" method="POST" action="createGame">
+        <button class="btn" type="submit">Create game</button>
+      </form>
+
     </div>
     <div
       th:unless="${principalUser}"
