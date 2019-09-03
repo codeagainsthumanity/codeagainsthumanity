@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class GameController {
@@ -35,17 +32,28 @@ public class GameController {
         return "gameroom";
     }
 
+    @GetMapping("/createGame")
+        public String getGameRoom () {
+            return "gameRoom";
+        }
+
+
     @PostMapping("/createGame")
-    public RedirectView createGame(boolean showRules, String statusMessage, String roomCode) {
-        // I want to create a new game instance and populate it with
-        // a single black card and 7 white cards for all players who join
-        //(for the first player that created the room, they are the
-        // first judge and will not see 7 cards.
-        Game newGame = new Game(showRules, statusMessage, roomCode);
+    public RedirectView createGame(Principal p) {
+        ApplicationUser gameOwner = applicationUserRepository.findByUsername(p.getName());
+        double gameCode = Math.random() * 100;
+        Game newGame = new Game(gameOwner, gameCode);
+        gameRepository.save(newGame);
 
-//        return("/game/{gameCode}");
-
+        return new RedirectView("/game/" + gameCode);
     }
+
+    @GetMapping("/gameroom")
+    public String getGameRoom(Principal p, Model m) {
+        m.addAttribute("principalUser", p);
+        return "gameroom";
+    }
+
 
     // black card will be automatically be picked
     // each time a judge is chosen
@@ -54,30 +62,29 @@ public class GameController {
     // judge will not have access to cards during their turn
 
     //route needed for the submit of white card by players, not available for judge
-    @PostMapping("/submitWhiteCard")
+//    @PostMapping("/submitWhiteCard")
 
     // and a route for the winning card submitted by judge, not available for players
-    @PostMapping("submitWinningCard")
-
-
-     public String leaderboardUpdate() {
-        //leaderboard will update with last winning combo
-        // winningCard is the whitecard selected by the judge
-        //leaderBoardString will equal currentBlackCard + winningCard
-        //if winningCard is true
-        //        leaderBoardString now equals white card and black card combo.
-        // return leaderBoardString;
-    }
-
-    //Status board will update with messages like, waiting for #of players
-    public String statusBoardUpdate() {
-        // If whitecards from at least one player is available,
-        // judge and players should see a message like
-        // "Waiting for {3} of {4} players"
-        //judge can pick a winner at any time to keep games going so
-        //the winning selection button is also a round ending button
-    }
-
+//    @PostMapping("submitWinningCard")
+//
+//
+//    public String leaderboardUpdate() {
+//        //leaderboard will update with last winning combo
+//        // winningCard is the whitecard selected by the judge
+//        //leaderBoardString will equal currentBlackCard + winningCard
+//        //if winningCard is true
+//        //        leaderBoardString now equals white card and black card combo.
+//        // return leaderBoardString;
+//    }
+//
+//    //Status board will update with messages like, waiting for #of players
+//    public String statusBoardUpdate() {
+//        // If whitecards from at least one player is available,
+//        // judge and players should see a message like
+//        // "Waiting for {3} of {4} players"
+//        //judge can pick a winner at any time to keep games going so
+//        //the winning selection button is also a round ending button
+//    }
 
 
 }

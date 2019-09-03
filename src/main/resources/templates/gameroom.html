@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Game Room</title>
+    <link th:replace="fragments/css :: css" ></link>
+    <link th:replace="fragments/css :: gameroom" ></link>
 </head>
 <body>
+<nav th:replace="fragments/nav :: nav" class="nav"></nav>
+<h1>Gameroom</h1>
+<div class="container gameboard">
+    <div class="row">
+        <div class="col bg-light">
+            <p>Previous round's winner & combo goes here</p>
+        </div>
+        <div class="col-6">
+            <div class="container blackcard">
+                <p>This is a black card</p>
+            </div>
+        </div>
+        <div class="col bg-light">
+            <p>Status messages go here</p>
+        </div>
+    </div>
+</div>
+<!--https://jsfiddle.net/djibe89/at2cv9q1/-->
+<div th:replace="fragments/whitecards :: toplay" ></div>
+<div th:replace="fragments/whitecards :: tojudge" ></div>
 
+<div th:replace="fragments/css :: js" ></div>
 </body>
 </html>
