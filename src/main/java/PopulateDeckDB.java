@@ -1,4 +1,5 @@
 import jdk.nashorn.internal.parser.JSONParser;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,22 +15,20 @@ public class PopulateDeckDB {
     public void readFilePopDB() throws IOException {
         try {
             //File bmp = new File("/scripts/cards.json");
-            //grab our file from path, read as a stream.
-            //BufferedImage image = ImageIO.read(bmp);
             
             // parsing file "JSONExample.json"
-            Object obj = new JSONParser().parse(new FileReader("JSONExample.json"));
+            Object obj = new JSONParser().parse(new FileReader("scripts/cards.json"));
 
             // typecasting obj to JSONObject
             JSONObject jo = (JSONObject) obj;
-            //return;
 
             // getting firstName and lastName
-            String firstName = (String) jo.get("firstName");
-            String lastName = (String) jo.get("lastName");
+            //String firstName = (String) jo.get("firstName");
 
-            System.out.println(firstName);
-            System.out.println(lastName);
+            // getting phoneNumbers
+            JSONArray ja = (JSONArray) jo.get("blackCards");
+            System.out.println(ja);
+
         }
         catch (FileNotFoundException | JSONException e){
             System.out.println("File was not found OR JSON exception.");
