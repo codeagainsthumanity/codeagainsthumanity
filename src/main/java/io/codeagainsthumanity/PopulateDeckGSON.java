@@ -25,7 +25,7 @@ public class PopulateDeckGSON {
             Gson gson = new Gson();
 
             //TODO: make a new class and hold SPECIFIC elements required.
-            AllDecks[] allCards = gson.fromJson(fileString, AllDecks[].class);
+            AllDecks allCards = gson.fromJson(fileString, AllDecks.class);
 
             System.out.println(allCards);
         }

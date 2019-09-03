@@ -4,13 +4,30 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AllDecks {
+    //variables
+    ArrayList blackCards;
+    ArrayList whiteCards;
 
-    ArrayList <Object> blackCards;
-    ArrayList <Object> whiteCards;
+    //constructor
+    public AllDecks(ArrayList blackCards, ArrayList whiteCards){
+        this.blackCards = blackCards;
+        this.whiteCards = whiteCards;
+    }
 
-    String text;
-    int pick;
+    //sets and gets
+    public ArrayList getBlackCards() {
+        return blackCards;
+    }
 
-    
+    public void setBlackCards(ArrayList blackCards) {
+        this.blackCards = blackCards;
+    }
 
+    public ArrayList getWhiteCards() {
+        return whiteCards;
+    }
+
+    public void setWhiteCards(ArrayList whiteCards) {
+        this.whiteCards = whiteCards;
+    }
 }
