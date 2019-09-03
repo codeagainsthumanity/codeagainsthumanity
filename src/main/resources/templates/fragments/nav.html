@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<nav th:fragment="nav" class="nav">
-    <div style="width:50%; float:left;" class="logo"><strong><a href="/">Code Against Humanity</a></strong></div>
-    <div th:if="${principalUser}" style="width:50%; float:left; text-align: right;">
-        <p>Hello, <span th:text="${principalUser.name}">Username</span>! | <a href="/profile">My profile</a> | <a href="/logout">Logout</a><br>
-            <a href="#">Start a New Game</a> | <a href="/myGames">My Games</a> | <a href="/users">Game Rules</a></p>
+  <nav th:fragment="nav" class="navbar navbar-dark bg-dark navbar-expand-sm">
+    <a href="/" class="navbar-brand">Code Against Humanity</a>
+
+    <div th:if="${principalUser}" class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link"
+            ><span th:text="${principalUser.name}">Username</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Start a New Game</a>
+        </li>
+        <li class="nav-item"><a href="#" class="nav-link">My Games</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Rules</a></li>
+        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+      </ul>
     </div>
-    <div th:unless="${principalUser}" style="width:50%; float:left; text-align: right;">
-        <p>Hello!<br>
-            <a href="/login">Log in</a> | <a href="/registration">Sign up</a></p>
+    <div
+      th:unless="${principalUser}"
+      class="collapse navbar-collapse"
+      id="mainNav"
+    >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="/login" class="nav-link">Log in</a></li>
+        <li class="nav-item">
+          <a href="/registration" class="nav-link">Sign up</a>
+        </li>
+      </ul>
     </div>
-</nav>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#mainNav"
+      aria-controls="navbarTogglerDemo01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
 </html>
