@@ -21,6 +21,12 @@ public class ApplicationUser implements UserDetails {
     String password;
     String fullName;
 
+    //setting up relationships with other models
+    @ManyToOne
+    ApplicationUser player;
+
+    @ManyToOne
+    Game gameInstance;
     // constructors
     public ApplicationUser(){}
 

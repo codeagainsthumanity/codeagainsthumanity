@@ -4,7 +4,7 @@
     <div style="width:50%; float:left;" class="logo"><strong><a href="/">Code Against Humanity</a></strong></div>
     <div th:if="${principalUser}" style="width:50%; float:left; text-align: right;">
         <p>Hello, <span th:text="${principalUser.name}">Username</span>! | <a href="/profile">My profile</a> | <a href="/logout">Logout</a><br>
-            <a href="#">Start a New Game</a> | <a href="#">My Games</a> | <a href="/users">Game Rules</a></p>
+            <a href="#">Start a New Game</a> | <a href="/myGames">My Games</a> | <a href="/users">Game Rules</a></p>
     </div>
     <div th:unless="${principalUser}" style="width:50%; float:left; text-align: right;">
         <p>Hello!<br>
