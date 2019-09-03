@@ -4,10 +4,11 @@ import javax.persistence.*;
 
 @Entity
 public class WhiteCard {
+    //variables
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String body;
+    String text;
 
     @ManyToOne
     ApplicationUser player;
@@ -18,11 +19,9 @@ public class WhiteCard {
     @ManyToOne
     Deck deck;
 
-
-    public WhiteCard(String body, ApplicationUser player, Game gameInstance) {
-        this.body = body;
-        this.player = player;
-        this.gameInstance = gameInstance;
+    //constructor
+    public WhiteCard(String text) {
+        this.text = text;
     }
 
     // getters and setters
@@ -34,12 +33,12 @@ public class WhiteCard {
         this.id = id;
     }
 
-    public String getBody() {
-        return body;
+    public String getText() {
+        return text;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public ApplicationUser getPlayer() {
