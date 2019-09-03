@@ -8,7 +8,8 @@ public class BlackCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String body;
+    String text;
+    int pick;
 
     @ManyToOne
     Game gameInstance;
@@ -20,9 +21,9 @@ public class BlackCard {
     Deck deck;
 
 
-    public BlackCard(String body, Game gameInstance) {
-        this.body = body;
-        this.gameInstance = gameInstance;
+    public BlackCard(String text, int pick) {
+        this.text = text;
+        this.pick = pick;
     }
 
     //getters and setters
@@ -34,21 +35,11 @@ public class BlackCard {
         this.id = id;
     }
 
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
 
     public Game getGameInstance() {
         return gameInstance;
     }
 
-    public void setGameInstance(Game gameInstance) {
-        this.gameInstance = gameInstance;
-    }
 
     public ApplicationUser getPlayer() {
         return player;
@@ -58,4 +49,20 @@ public class BlackCard {
         this.player = player;
     }
 
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getPick() {
+        return pick;
+    }
+
+    public void setPick(int pick) {
+        this.pick = pick;
+    }
 }
