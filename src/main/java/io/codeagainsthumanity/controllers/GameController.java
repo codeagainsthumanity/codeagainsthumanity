@@ -44,7 +44,13 @@ public class GameController {
         ApplicationUser gameOwner = applicationUserRepository.findByUsername(p.getName());
         double gameCode = Math.random() * 100;
         Game newGame = new Game(gameOwner, gameCode);
+
+        //use method to add the method to the users list of games
+        gameOwner.addToMyGames(newGame);
+
+        //save databases
         gameRepository.save(newGame);
+        applicationUserRepository.save(gameOwner);
 
         return new RedirectView("/game/" + gameCode);
     }

@@ -29,8 +29,8 @@ public class ApplicationUser implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "gamesPlayed",
-            joinColumns = @JoinColumn(name="player", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="game", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name="game", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="player", referencedColumnName = "id")
             )
     List<Game> myGames;
 
@@ -44,8 +44,50 @@ public class ApplicationUser implements UserDetails {
     }
 
     // getters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getFullName() {
         return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public ApplicationUser getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(ApplicationUser player) {
+        this.player = player;
+    }
+
+    public List<Game> getMyGames() {
+        return myGames;
+    }
+
+    public void setMyGames(List<Game> myGames) {
+        this.myGames = myGames;
+    }
+
+    //methods
+    public void addToMyGames(Game game){
+        this.myGames.add(game);
     }
 
     // interface methods
