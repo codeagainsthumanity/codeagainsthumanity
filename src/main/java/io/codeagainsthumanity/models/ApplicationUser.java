@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -15,16 +16,14 @@ public class ApplicationUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-
-
     @Column(unique=true)
     String username;
     String password;
     String fullName;
 
     //setting up relationships with other models
-    @ManyToOne
-    ApplicationUser player;
+    @OneToMany
+    Set<Status> status;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -69,13 +68,6 @@ public class ApplicationUser implements UserDetails {
         this.fullName = fullName;
     }
 
-    public ApplicationUser getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(ApplicationUser player) {
-        this.player = player;
-    }
 
     public List<Game> getMyGames() {
         return myGames;

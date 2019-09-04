@@ -18,25 +18,33 @@ public class Game {
     boolean showRules;
 
     @OneToMany
-    ArrayList<String> currentStatus;
+    Set<Status> status;
     //user many statuses
     //game has many statuses
     // create status class
     // find by game and user in status repo
 
     double gameCode;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
     BlackCard currentBlack;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
     BlackCard previousBlack;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
     WhiteCard previousWhite;
 
-//    ArrayList<List<WhiteCard>> hands;
+    @OneToMany(cascade = CascadeType.PERSIST)
     List<WhiteCard> toBeJudged;
 
-    ArrayList<WhiteCard> whiteDeck;
-    ArrayList<BlackCard> blackDeck;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    List<WhiteCard> whiteDeck;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    List<BlackCard> blackDeck;
 
-    @OneToMany
-    List<WhiteCard> hand;
+//    @OneToMany(cascade = CascadeType.PERSIST)
+//    List<WhiteCard> hand;
 
     @CreationTimestamp
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,9 +65,6 @@ public class Game {
 
 //    @OneToOne(mappedBy = "gameInstance")
 //    BlackCard activeBlackCard;
-
-    //TODO
-    //Add previous black card and white card variables
 
 
     public Game(){};
@@ -146,7 +151,7 @@ public class Game {
         this.toBeJudged = toBeJudged;
     }
 
-    public ArrayList<WhiteCard> getWhiteDeck() {
+    public List<WhiteCard> getWhiteDeck() {
         return whiteDeck;
     }
 
@@ -154,20 +159,12 @@ public class Game {
         this.whiteDeck = whiteDeck;
     }
 
-    public ArrayList<BlackCard> getBlackDeck() {
+    public List<BlackCard> getBlackDeck() {
         return blackDeck;
     }
 
     public void setBlackDeck(ArrayList<BlackCard> blackDeck) {
         this.blackDeck = blackDeck;
-    }
-
-    public List<WhiteCard> getHand() {
-        return hand;
-    }
-
-    public void setHand(List<WhiteCard> hand) {
-        this.hand = hand;
     }
 
     public Date getCreatedAt() {

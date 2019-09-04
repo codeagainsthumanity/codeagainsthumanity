@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -33,7 +34,7 @@ public class GameController {
     }
 
     @PostMapping("/createGame")
-    public RedirectView createGame(Principal p) {
+    public RedirectView createGame(Principal p) throws IOException {
         ApplicationUser gameOwner = applicationUserRepository.findByUsername(p.getName());
         double gameCode = Math.random() * 100;
         Game newGame = new Game(gameOwner, gameCode);
