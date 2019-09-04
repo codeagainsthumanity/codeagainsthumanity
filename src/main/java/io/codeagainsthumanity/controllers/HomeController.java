@@ -14,10 +14,4 @@ public class HomeController {
         return "root";
     }
 
-    @GetMapping("/bootstrap")
-    public String getBootstrap(Principal p, Model m){
-        m.addAttribute("principalUser", p);
-        return "bootstrap";
-    }
-
 }

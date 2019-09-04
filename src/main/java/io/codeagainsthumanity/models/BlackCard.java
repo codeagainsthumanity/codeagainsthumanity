@@ -11,14 +11,14 @@ public class BlackCard {
     String text;
     int pick;
 
-    @ManyToOne
-    Game gameInstance;
+//    @ManyToOne
+//    Game gameInstance;
 
-    @ManyToOne
-    ApplicationUser player;
+//    @ManyToOne
+//    ApplicationUser player;
 
-    @ManyToOne
-    Deck deck;
+//    @ManyToOne
+//    Deck deck;
 
 
     public BlackCard(String text, int pick) {
@@ -36,18 +36,18 @@ public class BlackCard {
     }
 
 
-    public Game getGameInstance() {
-        return gameInstance;
-    }
-
-
-    public ApplicationUser getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(ApplicationUser player) {
-        this.player = player;
-    }
+//    public Game getGameInstance() {
+//        return gameInstance;
+//    }
+//
+//
+//    public ApplicationUser getPlayer() {
+//        return player;
+//    }
+//
+//    public void setPlayer(ApplicationUser player) {
+//        this.player = player;
+//    }
 
 
     public String getText() {

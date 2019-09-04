@@ -10,14 +10,14 @@ public class WhiteCard {
     long id;
     String text;
 
-    @ManyToOne
-    ApplicationUser player;
-
-    @ManyToOne
-    Game gameInstance;
-
-    @ManyToOne
-    Deck deck;
+//    @ManyToOne
+//    ApplicationUser player;
+//
+//    @ManyToOne
+//    Game gameInstance;
+//
+//    @ManyToOne
+//    Deck deck;
 
     //constructor
     public WhiteCard(String text) {
@@ -41,20 +41,20 @@ public class WhiteCard {
         this.text = text;
     }
 
-    public ApplicationUser getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(ApplicationUser player) {
-        this.player = player;
-    }
-
-    public Game getGameInstance() {
-        return gameInstance;
-    }
-
-    public void setGameInstance(Game gameInstance) {
-        this.gameInstance = gameInstance;
-    }
+//    public ApplicationUser getPlayer() {
+//        return player;
+//    }
+//
+//    public void setPlayer(ApplicationUser player) {
+//        this.player = player;
+//    }
+//
+//    public Game getGameInstance() {
+//        return gameInstance;
+//    }
+//
+//    public void setGameInstance(Game gameInstance) {
+//        this.gameInstance = gameInstance;
+//    }
 
 }

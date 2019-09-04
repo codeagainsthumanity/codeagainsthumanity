@@ -32,7 +32,9 @@ public class ApplicationUserController {
 
     @GetMapping ("/registration")
     public String getRegistraionPage(Principal p, Model m){
-        m.addAttribute("principalUser", p);return "registration";
+        m.addAttribute("principalUser", p);
+        return "registration";
+
     }
 
     @GetMapping ("/profile")
@@ -43,7 +45,7 @@ public class ApplicationUserController {
         return "profile";
     }
 
-    @PostMapping ("/users")
+    @PostMapping ("/createUser")
     public RedirectView createUser (String username, String password, String fullName){
         ApplicationUser newUser = new ApplicationUser(username, encoder.encode(password), fullName);
         applicationUserRepository.save(newUser);
