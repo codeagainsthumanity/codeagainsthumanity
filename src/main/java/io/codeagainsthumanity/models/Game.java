@@ -1,14 +1,13 @@
 package io.codeagainsthumanity.models;
 
+import io.codeagainsthumanity.PopulateDeckGSON;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Game {
@@ -17,8 +16,35 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     boolean showRules;
-    String statusOfGame;
+
+    @OneToMany
+    Set<Status> status;
+    //user many statuses
+    //game has many statuses
+    // create status class
+    // find by game and user in status repo
+
     double gameCode;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    BlackCard currentBlack;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    BlackCard previousBlack;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    WhiteCard previousWhite;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    List<WhiteCard> toBeJudged;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    List<WhiteCard> whiteDeck;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    List<BlackCard> blackDeck;
+
+//    @OneToMany(cascade = CascadeType.PERSIST)
+//    List<WhiteCard> hand;
 
     @CreationTimestamp
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,23 +62,17 @@ public class Game {
 //
 //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
 //    List<BlackCard> currentBlackDeck;
-//
+
 //    @OneToOne(mappedBy = "gameInstance")
 //    BlackCard activeBlackCard;
 
-    //TODO
-    //Add previous black card and white card variables
-
-    // ArrayList of status codes
-    // 0: You're the judge and waiting for players to play their whitecard
-    // 1: Player: Time to play a white card
-    // 2: Waiting to be judged
 
     public Game(){};
 
-    public Game(ApplicationUser gameOwner, double gameCode) {
+    public Game(ApplicationUser gameOwner, double gameCode) throws IOException {
         this.showRules = true;
-        this.statusOfGame = "New Game";
+        this.whiteDeck = populateWhiteDeck();
+        this.blackDeck = populateBlackDeck();
         this.gameCode = gameCode;
         this.players = createPlayerList(gameOwner);
 
@@ -64,31 +84,20 @@ public class Game {
         return newPlayerList;
     }
 
+    public ArrayList<WhiteCard> populateWhiteDeck() throws IOException {
+        PopulateDeckGSON p = new PopulateDeckGSON();
+        return p.readWhiteFileGSON();
+    }
+
+    public ArrayList<BlackCard> populateBlackDeck() throws IOException {
+        PopulateDeckGSON p = new PopulateDeckGSON();
+        return p.readBlackFileGSON();
+    }
+
     // method to add a new player
     public List<ApplicationUser> addPlayer(ApplicationUser playerToAdd){
         this.players.add(playerToAdd);
         return this.players;
-    }
-
-
-    public double getGameCode() {
-        return gameCode;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Time getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Time updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -107,63 +116,84 @@ public class Game {
         this.showRules = showRules;
     }
 
-    public List<ApplicationUser> getPlayers() {
-        return this.players;
+
+    public double getGameCode() {
+        return gameCode;
     }
 
-    public void setPlayer(ArrayList<ApplicationUser> players) {
+    public void setGameCode(double gameCode) {
+        this.gameCode = gameCode;
+    }
+
+    public BlackCard getCurrentBlack() {
+        return currentBlack;
+    }
+
+    public void setCurrentBlack(BlackCard currentBlack) {
+        this.currentBlack = currentBlack;
+    }
+
+    public BlackCard getPreviousBlack() {
+        return previousBlack;
+    }
+
+    public void setPreviousBlack(BlackCard previousBlack) {
+        this.previousBlack = previousBlack;
+    }
+
+    public WhiteCard getPreviousWhite() {
+        return previousWhite;
+    }
+
+    public void setPreviousWhite(WhiteCard previousWhite) {
+        this.previousWhite = previousWhite;
+    }
+
+    public List<WhiteCard> getToBeJudged() {
+        return toBeJudged;
+    }
+
+    public void setToBeJudged(List<WhiteCard> toBeJudged) {
+        this.toBeJudged = toBeJudged;
+    }
+
+    public List<WhiteCard> getWhiteDeck() {
+        return whiteDeck;
+    }
+
+    public void setWhiteDeck(ArrayList<WhiteCard> whiteDeck) {
+        this.whiteDeck = whiteDeck;
+    }
+
+    public List<BlackCard> getBlackDeck() {
+        return blackDeck;
+    }
+
+    public void setBlackDeck(ArrayList<BlackCard> blackDeck) {
+        this.blackDeck = blackDeck;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Time getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Time updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<ApplicationUser> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<ApplicationUser> players) {
         this.players = players;
     }
-
-//    public List<WhiteCard> getCurrentWhiteCard() {
-//        return currentWhiteDeck;
-//    }
-//
-//    public void setCurrentWhiteCard(ArrayList<WhiteCard> currentWhiteCard) {
-//        this.currentWhiteDeck = currentWhiteCard;
-//    }
-//
-//    public List<BlackCard> getCurrentBlackCard() {
-//        return currentBlackDeck;
-//    }
-//
-//    public void setCurrentBlackCard(ArrayList<BlackCard> currentBlackCard) {
-//        this.currentBlackDeck = currentBlackCard;
-//    }
-
-    public Game(Boolean showRules) {
-        this.showRules = showRules;
-    }
-
-    public String getStatusOfGame() {
-        return statusOfGame;
-    }
-
-    public void setStatusOfGame(String statusOfGame) {
-        this.statusOfGame = statusOfGame;
-    }
-
-//    public List<WhiteCard> getCurrentWhiteDeck() {
-//        return currentWhiteDeck;
-//    }
-//
-//    public void setCurrentWhiteDeck(ArrayList<WhiteCard> currentWhiteDeck) {
-//        this.currentWhiteDeck = currentWhiteDeck;
-//    }
-//
-//    public List<BlackCard> getCurrentBlackDeck() {
-//        return currentBlackDeck;
-//    }
-//
-//    public void setCurrentBlackDeck(ArrayList<BlackCard> currentBlackDeck) {
-//        this.currentBlackDeck = currentBlackDeck;
-//    }
-//
-//    public BlackCard getActiveBlackCard() {
-//        return activeBlackCard;
-//    }
-//
-//    public void setActiveBlackCard(BlackCard activeBlackCard) {
-//        this.activeBlackCard = activeBlackCard;
-//    }
 }
