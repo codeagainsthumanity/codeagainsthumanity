@@ -21,6 +21,10 @@
         </div>
         <div class="col bg-light">
             <p>Status messages go here</p>
+            <h4>Players: </h4>
+            <div th:each="player: ${currentGame.players}" >
+                <li><span th:text="${player.fullName}"></span></li>
+            </div>
         </div>
     </div>
 </div>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link th:fragment="css" rel="stylesheet" href="/css/bootstrap.min.css" >
-    <link th:fragment="gameroom" rel="stylesheet" href="/gameroom.css" >
-    <div th:fragment="js">
+    <!--https://stackoverflow.com/questions/22023890/use-a-thymeleaf-template-without-including-the-fragment-definition-element-->
+    <div th:fragment="css" th:remove="tag">
+        <link rel="stylesheet" href="/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="/customCss/nav.css" >
+    </div>
+    <link th:fragment="gameroom" rel="stylesheet" href="/customCss/gameroom.css" >
+    <div th:fragment="js" th:remove="tag">
         <script  src="/js/bootstrap.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </div>
