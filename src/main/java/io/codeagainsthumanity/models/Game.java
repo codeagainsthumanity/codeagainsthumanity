@@ -40,6 +40,14 @@ public class Game {
     @OneToOne(mappedBy = "gameInstance")
     BlackCard activeBlackCard;
 
+    //TODO
+    //Add previous black card and white card variables
+
+    // ArrayList of status codes
+    // 0: You're the judge and waiting for players to play their whitecard
+    // 1: Player: Time to play a white card
+    // 2: Waiting to be judged
+
     public Game(){};
 
     public Game(ApplicationUser gameOwner, double gameCode) {

@@ -18,26 +18,19 @@ public class GameController {
     GameRepository gameRepository;
     @Autowired
     ApplicationUserRepository applicationUserRepository;
-    @Autowired
-    DeckRepository deckRepository;
+
     @Autowired
     BlackCardRepository blackCardRepository;
     @Autowired
     WhiteCardRepository whiteCardRepository;
 
-    @GetMapping("/myGames")
+    @GetMapping("/allGames")
     public String getAllGames(Principal p, Model m) {
         ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
 //        List<Game> myGameInstances = new LinkedList<>();
         m.addAttribute("games", gameRepository.findAll());
-        return "gameroom";
+        return "allGames";
     }
-
-    @GetMapping("/createGame")
-        public String getGameRoom () {
-            return "gameRoom";
-        }
-
 
     @PostMapping("/createGame")
     public RedirectView createGame(Principal p) {
@@ -62,18 +55,17 @@ public class GameController {
         return "gameroom";
     }
 
-    @GetMapping("/gameroom")
-    public String getGameRoom(Principal p, Model m) {
-        m.addAttribute("principalUser", p);
-        return "gameroom";
-    }
 
+    //TODO:
+    // joinGame Post route(pass in current user)
+    // Use setter of game instance into its player's lists
+    // save game instance in repo
 
     // black card will be automatically be picked
     // each time a judge is chosen
 
     //white cards will persist for players,
-    // judge will not have access to cards during their turn
+    // judge will not have access to white cards during their turn
 
     //route needed for the submit of white card by players, not available for judge
 //    @PostMapping("/submitWhiteCard")
