@@ -31,14 +31,14 @@ public class Game {
     @ManyToMany (mappedBy = "myGames")
     List<ApplicationUser> players;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-    List<WhiteCard> currentWhiteDeck;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-    List<BlackCard> currentBlackDeck;
-
-    @OneToOne(mappedBy = "gameInstance")
-    BlackCard activeBlackCard;
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
+//    List<WhiteCard> currentWhiteDeck;
+//
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
+//    List<BlackCard> currentBlackDeck;
+//
+//    @OneToOne(mappedBy = "gameInstance")
+//    BlackCard activeBlackCard;
 
     //TODO
     //Add previous black card and white card variables
@@ -64,6 +64,11 @@ public class Game {
         return newPlayerList;
     }
 
+    // method to add a new player
+    public List<ApplicationUser> addPlayer(ApplicationUser playerToAdd){
+        this.players.add(playerToAdd);
+        return this.players;
+    }
 
 
     public double getGameCode() {
@@ -110,21 +115,21 @@ public class Game {
         this.players = players;
     }
 
-    public List<WhiteCard> getCurrentWhiteCard() {
-        return currentWhiteDeck;
-    }
-
-    public void setCurrentWhiteCard(ArrayList<WhiteCard> currentWhiteCard) {
-        this.currentWhiteDeck = currentWhiteCard;
-    }
-
-    public List<BlackCard> getCurrentBlackCard() {
-        return currentBlackDeck;
-    }
-
-    public void setCurrentBlackCard(ArrayList<BlackCard> currentBlackCard) {
-        this.currentBlackDeck = currentBlackCard;
-    }
+//    public List<WhiteCard> getCurrentWhiteCard() {
+//        return currentWhiteDeck;
+//    }
+//
+//    public void setCurrentWhiteCard(ArrayList<WhiteCard> currentWhiteCard) {
+//        this.currentWhiteDeck = currentWhiteCard;
+//    }
+//
+//    public List<BlackCard> getCurrentBlackCard() {
+//        return currentBlackDeck;
+//    }
+//
+//    public void setCurrentBlackCard(ArrayList<BlackCard> currentBlackCard) {
+//        this.currentBlackDeck = currentBlackCard;
+//    }
 
     public Game(Boolean showRules) {
         this.showRules = showRules;
@@ -138,27 +143,27 @@ public class Game {
         this.statusOfGame = statusOfGame;
     }
 
-    public List<WhiteCard> getCurrentWhiteDeck() {
-        return currentWhiteDeck;
-    }
-
-    public void setCurrentWhiteDeck(ArrayList<WhiteCard> currentWhiteDeck) {
-        this.currentWhiteDeck = currentWhiteDeck;
-    }
-
-    public List<BlackCard> getCurrentBlackDeck() {
-        return currentBlackDeck;
-    }
-
-    public void setCurrentBlackDeck(ArrayList<BlackCard> currentBlackDeck) {
-        this.currentBlackDeck = currentBlackDeck;
-    }
-
-    public BlackCard getActiveBlackCard() {
-        return activeBlackCard;
-    }
-
-    public void setActiveBlackCard(BlackCard activeBlackCard) {
-        this.activeBlackCard = activeBlackCard;
-    }
+//    public List<WhiteCard> getCurrentWhiteDeck() {
+//        return currentWhiteDeck;
+//    }
+//
+//    public void setCurrentWhiteDeck(ArrayList<WhiteCard> currentWhiteDeck) {
+//        this.currentWhiteDeck = currentWhiteDeck;
+//    }
+//
+//    public List<BlackCard> getCurrentBlackDeck() {
+//        return currentBlackDeck;
+//    }
+//
+//    public void setCurrentBlackDeck(ArrayList<BlackCard> currentBlackDeck) {
+//        this.currentBlackDeck = currentBlackDeck;
+//    }
+//
+//    public BlackCard getActiveBlackCard() {
+//        return activeBlackCard;
+//    }
+//
+//    public void setActiveBlackCard(BlackCard activeBlackCard) {
+//        this.activeBlackCard = activeBlackCard;
+//    }
 }

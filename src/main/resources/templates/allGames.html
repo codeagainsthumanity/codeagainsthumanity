@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>All Games</title>
+    <link th:replace="fragments/css :: css" ></link>
 </head>
 <body>
-<!--//TODO: -->
-<!--//List of all the games available-->
+<nav th:replace="fragments/nav :: nav" class="nav"></nav>
+<div class="container">
 
+    <h1>List of all games</h1>
+
+    <div th:each="game: ${gamesList}">
+        <a th:href ="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}">Game code</span></a> created by <span th:text="${game.players.get(0).fullName}">Artist</span>
+        <form th:unless="${game.players.contains(user)}"  method="POST" action="/joinGame">
+            <input name="gameCode" id="gameCode" hidden th:value ="${game.gameCode}">
+            <input type="submit" class="btn btn-primary" value="Join Game">
+        </form>
+        <span th:if="${game.players.contains(user)}"><br>Currently playing this game</span>
+        <hr>
+    </div>
+
+</div>
+<div th:replace="fragments/css :: js" ></div>
 </body>
 </html>
