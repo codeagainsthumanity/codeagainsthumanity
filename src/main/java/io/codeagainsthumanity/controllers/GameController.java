@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class GameController {
@@ -27,9 +28,12 @@ public class GameController {
 
     @GetMapping("/allGames")
     public String getAllGames(Principal p, Model m) {
-        ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
-//        List<Game> myGameInstances = new LinkedList<>();
-        m.addAttribute("games", gameRepository.findAll());
+        List<Game> gamesList = gameRepository.findAll();
+        System.out.println("GAMES: " + gamesList.toString());
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("gamesList", gamesList);
+        m.addAttribute("principalUser", p);
+        m.addAttribute("user", user);
         return "allGames";
     }
 
