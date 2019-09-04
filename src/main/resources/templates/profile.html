@@ -10,6 +10,12 @@
 <div class="container">
     <h1>Profile: <span th:text="${user.fullName}"></span></h1>
     <p>Profile details will go here.</p>
+    <h2>Games: </h2>
+    <ul></ul>
+    <div th:each="game: ${user.myGames}" >
+        <li><a th:href ="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>: <span th:text="${game.statusOfGame}"></span></li>
+    </div>
+
 </div>
 <div th:replace="fragments/css :: js" ></div>
 </body>

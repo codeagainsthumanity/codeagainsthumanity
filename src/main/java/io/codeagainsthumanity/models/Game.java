@@ -46,7 +46,6 @@ public class Game {
         this.showRules = true;
         this.statusOfGame = "New Game";
         this.gameCode = gameCode;
-
         this.players = createPlayerList(gameOwner);
 
     }
@@ -95,8 +94,8 @@ public class Game {
         this.showRules = showRules;
     }
 
-    public List<ApplicationUser> getPlayer() {
-        return players;
+    public List<ApplicationUser> getPlayers() {
+        return this.players;
     }
 
     public void setPlayer(ArrayList<ApplicationUser> players) {
