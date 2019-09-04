@@ -1,5 +1,7 @@
 .nav-btn {
     color: rgba(255,255,255,.5);
+    padding: 8px;
+    border: 0px;
 }
 
 .nav-btn:hover {

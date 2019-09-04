@@ -94,6 +94,12 @@ public class Game {
         return p.readBlackFileGSON();
     }
 
+    // method to add a new player
+    public List<ApplicationUser> addPlayer(ApplicationUser playerToAdd){
+        this.players.add(playerToAdd);
+        return this.players;
+    }
+
     public long getId() {
         return id;
     }
