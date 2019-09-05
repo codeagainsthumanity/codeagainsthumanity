@@ -48,7 +48,7 @@ public class Status {
     }
 
     public int getStatusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     public void setStatusCode(int statusCode) {
