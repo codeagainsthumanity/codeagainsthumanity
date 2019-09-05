@@ -17,7 +17,7 @@ public class Game {
     long id;
     boolean showRules;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     List<Status> status;
     //user many statuses
     //game has many statuses

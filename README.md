@@ -52,3 +52,5 @@ https://www.baeldung.com/jpa-one-to-one
 https://www.baeldung.com/spring-data-rest-relationships
 
 https://thoughts-on-java.org/persist-creation-update-timestamps-hibernate/
+
+https://www.baeldung.com/hibernate-one-to-many
