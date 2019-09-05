@@ -52,6 +52,16 @@ public class ApplicationUserController {
         return "profile";
     }
 
+    @GetMapping("/profiles")
+    public String getAllProfiles(Principal p, Model m) {
+        List<ApplicationUser> users = applicationUserRepository.findAll();
+        m.addAttribute("users", users);
+        m.addAttribute("principalUser", p);
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("user", user);
+        return "profiles";
+    }
+
     @PostMapping ("/createUser")
     public RedirectView createUser (String username, String password, String fullName){
         ApplicationUser newUser = new ApplicationUser(username, encoder.encode(password), fullName);

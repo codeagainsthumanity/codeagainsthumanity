@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All The Profiles</title>
+
+    <link th:replace="fragments/css :: css" ></link>
+</head>
+<body>
+
+
+<nav th:replace="fragments/nav :: nav" class="nav"></nav>
+<div class="container">
+    <h1>All The Profiles.  All of them.</h1>
+    
+    <div th:each="u : ${users}" class="users">
+        <h3 th:id="${u.id}" th:text="${u.id}">id</h3>
+        <p>
+            Username: <span th:text="${u.username}"></span>
+        </p>
+        <!--    div.  conditional statement. if its me, don't show the button.
+                if i'm subscribed, show me the unsubscribe. wrap button in form.
+                hidden input tag with the user id -->
+    
+    <!--    <form th:if="!${u.getSubscribedTo().contains(user)}" method="POST" action="/subscribe">-->
+    <!--        <button type="submit" class="sub" style="background-color: #04c998">Subscribe</button>-->
+    <!--        <input type="hidden" name="subTo" th:value="${user.username}">-->
+    <!--    </form>-->
+    
+    <!--    <form th:if="${u.getSubscribedTo().contains(user)}" method="POST" action="/unsubscribe">-->
+    <!--        <button type="submit" class="sub">UnSubcribe</button>-->
+    <!--        <input type="hidden" name="subTo" th:value="${user.username}">-->
+    <!--    </form>-->
+        
+    
+    </div>
+</div>
+<div th:replace="fragments/css :: js" ></div>
+</body>
+</html>

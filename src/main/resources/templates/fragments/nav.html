@@ -10,13 +10,17 @@
             ><span th:text="${principalUser.name}">Username</span></a
           >
         </li>
+
+        <li class="nav-item"><a href="/profiles" class="nav-link">Profiles</a></li>
+
         <li class="nav-item">
           <form class="form-inline" method="POST" action="/createGame">
             <button class="btn btn-link nav-btn" type="submit">Create game</button>
           </form>
         </li>
+
         <li class="nav-item"><a href="/allGames" class="nav-link">Join a Game</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Rules</a></li>
+        <li class="nav-item"><a href="https://en.wikipedia.org/wiki/Cards_Against_Humanity" target="_blank" class="nav-link">Rules</a></li>
         <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
       </ul>
 

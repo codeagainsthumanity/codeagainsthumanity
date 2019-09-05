@@ -2,7 +2,7 @@
 <html lang="en">
     <div th:fragment="toplay" class="container whitecards">
         <h2>Select a white card to play</h2>
-        <form >
+        <form method="POST" action="/playWhiteCard">
             <label>
                 <input type="radio" class="card-input-element d-none" name="whitecard" value="wc1">
                 <div class="card card-body bg-light whitecard">White Card</div>
@@ -44,7 +44,7 @@
 
     <div th:fragment="tojudge" class="container whitecards">
         <h2>Select your favorite!</h2>
-        <form>
+        <form method="POST" action="/judgeWhiteCard">
             <label>
                 <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
                 <div class="card card-body bg-light whitecard">White Card</div>
