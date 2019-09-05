@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
+<div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
 
-    <div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
-
-        <form method="POST" action="/dummyJudge">
-            <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
-            <input type="submit" class="btn btn-primary" value="Judge this round">
-        </form>
-        <h2>Select your favorite!</h2>
-        <form  method="POST" action="/judgeWhiteCard">
+    <form method="POST" action="/dummyJudge">
+        <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
+        <input type="submit" class="btn btn-primary" value="Judge this round">
+    </form>
+    <h2>Select your favorite!</h2>
+    
+        <form method="POST" action="/judgeWhiteCard">
             <label>
                 <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
                 <div class="card card-body bg-light whitecard">White Card</div>
@@ -23,44 +23,6 @@
                 <div class="card card-body bg-light whitecard">White Card</div>
             </label>
 
-            <br>
-            <button class="btn btn-primary" type="submit">Submit form</button>
-
-        </form>
-    </div>
-
-
-    <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
-        <h2>Select a white card to play</h2>
-        <form method="POST" action="/playWhiteCard">
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc1">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc2">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc3">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc4">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc5">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc6">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="whitecard" value="wc7">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
 
 
             <br>
@@ -68,4 +30,42 @@
 
         </form>
     </div>
+<div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
+    <h2>Select a white card to play</h2>
+    <form method="POST" action="/playWhiteCard">
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard1}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard2}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard3}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard4}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard5}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard6}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+        <label>
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard7}">
+            <div class="card card-body bg-light whitecard">White Card</div>
+        </label>
+
+
+        <br>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+
+    </form>
+</div>
 </html>

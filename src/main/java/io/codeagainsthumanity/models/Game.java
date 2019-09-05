@@ -42,15 +42,18 @@ public class Game {
     WhiteCard previousWhite;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    List<WhiteCard> toBeJudged;
-
-    @OneToMany(cascade = CascadeType.PERSIST)
     List<WhiteCard> whiteDeck;
     @OneToMany(cascade = CascadeType.PERSIST)
     List<BlackCard> blackDeck;
 
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    List<WhiteCard> hand;
+    //the key is the users unique ID.  the list of string is the users hand.
+    //pass in id, get a hand.
+    HashMap<Long, List<String>> hands;
+
+    //white cards to be judged.
+    @OneToMany
+    List<WhiteCard> toBeJudged;
+
 
     @CreationTimestamp
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,16 +66,7 @@ public class Game {
     @ManyToMany (mappedBy = "myGames")
     List<ApplicationUser> players;
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-//    List<WhiteCard> currentWhiteDeck;
-//
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-//    List<BlackCard> currentBlackDeck;
-
-//    @OneToOne(mappedBy = "gameInstance")
-//    BlackCard activeBlackCard;
-
-
+    //constructors
     public Game(){};
 
 
@@ -90,23 +84,24 @@ public class Game {
         this.blackDeck = populateBlackDeck();
         this.gameCode = gameCode;
         this.players = createPlayerList(gameOwner);
+        this.currentBlack = randomBlackCard();
         this.hasBeenJudged = false;
         this.currentJudge = gameOwner.id;
-
     }
 
+    //methods
     public ArrayList<ApplicationUser> createPlayerList(ApplicationUser gameOwner){
         ArrayList<ApplicationUser> newPlayerList = new ArrayList<>();
         newPlayerList.add(gameOwner);
         return newPlayerList;
     }
 
-    public ArrayList<WhiteCard> populateWhiteDeck() throws IOException {
+    public List<WhiteCard> populateWhiteDeck() throws IOException {
         PopulateDeckGSON p = new PopulateDeckGSON();
         return p.readWhiteFileGSON();
     }
 
-    public ArrayList<BlackCard> populateBlackDeck() throws IOException {
+    public List<BlackCard> populateBlackDeck() throws IOException {
         PopulateDeckGSON p = new PopulateDeckGSON();
         return p.readBlackFileGSON();
     }
@@ -116,6 +111,79 @@ public class Game {
         this.players.add(playerToAdd);
         return this.players;
     }
+
+    //method to add a card to users hand
+    public void addCardToHand(Long id){
+        //random white card
+        WhiteCard wc = randomWhiteCard();
+        //white card text
+        String text = wc.getText();
+        //players hand, add text
+        this.getHands().get(id).add(text);
+    }
+    //method to remove a specific card from users hand
+    public void removeCardFromHand(Long id, String wc){
+        //players hand, add text
+        this.getHands().get(id).remove(wc);
+    }
+
+    public void updateBlackCardToBeJudgedAndPreviousBlack(){
+        //black random card
+        BlackCard random = randomBlackCard();
+        //black current card
+        BlackCard oldbc = this.getCurrentBlack();
+
+        //set current
+        this.setCurrentBlack(random);
+        //set previous
+        this.setPreviousBlack(oldbc);
+
+    }
+
+
+    public WhiteCard randomWhiteCard(){
+        //get this deck
+        List<WhiteCard> w = this.getWhiteDeck();
+        //get index randomly, inclusive.
+        int index = getRandomNumberInRange(0, w.size()-1);
+        //save that card
+        WhiteCard wc = w.get(index);
+        //remove that card from the deck
+        w.remove(index);
+        return wc;
+    }
+
+    public BlackCard randomBlackCard(){
+        //get this deck
+        List<BlackCard> b = this.getBlackDeck();
+        //get index randomly, inclusive.
+        int index = getRandomNumberInRange(0, b.size()-1);
+        //save that card
+        BlackCard bc = b.get(index);
+        //remove that card from the deck
+        b.remove(index);
+        return bc;
+    }
+
+    //sauce: https://www.mkyong.com/java/java-generate-random-integers-in-a-range/
+    private static int getRandomNumberInRange(int min, int max) {
+        if (min >= max) {
+            throw new IllegalArgumentException("max must be greater than min");
+        }
+
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
+    }
+
+
+    //gets and sets
+
+    public HashMap<Long, List<String>> getHands() {
+        return hands;
+    }
+
+    public void setHands(HashMap<Long, List<String>> hands) {
+        this.hands = hands;
 
     public void swapJudge() {
         int idx = findPlayerById(this.currentJudge);
