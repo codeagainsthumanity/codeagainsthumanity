@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
 
     <form method="POST" action="/dummyJudge">

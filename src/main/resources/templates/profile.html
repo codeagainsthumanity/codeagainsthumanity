@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:replace="fragments/css :: css" ></link>
+    <link th:replace="fragments/css :: css"></link>
 </head>
 <body>
 <nav th:replace="fragments/nav :: nav" class="nav"></nav>
@@ -12,15 +12,17 @@
     <p>Profile details will go here.</p>
     <h2>Games: </h2>
     <ul></ul>
-    <div th:each="game: ${user.myGames}" >
-        <li><a th:href ="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>:
-            <div th:each="s : ${status}">
-                <span th:text="${s}"></span></div></li>
-            </div>
+    <div th:each="game: ${user.myGames}">
+        <li><a th:href="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>: <span th:text="${user.status}"></span>
 
+<!--            <div th:each="status : ${user.status}">-->
+<!--                <span th:text="${status.statusCode}"></span>-->
+<!--            hello</div></li>-->
     </div>
 
 </div>
-<div th:replace="fragments/css :: js" ></div>
+
+</div>
+<div th:replace="fragments/css :: js"></div>
 </body>
 </html>
