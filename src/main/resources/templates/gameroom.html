@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Game Room</title>
@@ -20,11 +20,13 @@
             </div>
         </div>
         <div class="col bg-light">
-            <p>Status messages go here</p>
+          <h4 >Current Judge: <span th:text="${currentGame.currentJudge}"></span></h4>
             <h4>Players: </h4>
             <div th:each="player: ${currentGame.players}" >
-                <li><span th:text="${player.fullName}"></span></li>
+                <li><span th:text="${player.fullName}"></span>
+                <span th:if="${player.id == currentGame.currentJudge}">: Judge</span></li>
             </div>
+
 
         </div>
     </div>

@@ -16,6 +16,12 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     boolean showRules;
+    // creating a player object that will be the judge
+
+    long currentJudge;
+
+    // true, judge has picked winner and will not be judge anymore, false- players or judge are waiting for cards
+    boolean hasBeenJudged;
 
     @OneToMany(fetch = FetchType.EAGER)
     List<Status> status;
@@ -69,12 +75,23 @@ public class Game {
 
     public Game(){};
 
+
+    public boolean isHasBeenJudged() {
+        return hasBeenJudged;
+    }
+
+    public void setHasBeenJudged(boolean hasBeenJudged) {
+        this.hasBeenJudged = hasBeenJudged;
+    }
+
     public Game(ApplicationUser gameOwner, double gameCode) throws IOException {
         this.showRules = true;
         this.whiteDeck = populateWhiteDeck();
         this.blackDeck = populateBlackDeck();
         this.gameCode = gameCode;
         this.players = createPlayerList(gameOwner);
+        this.hasBeenJudged = false;
+        this.currentJudge = gameOwner.id;
 
     }
 
@@ -99,6 +116,8 @@ public class Game {
         this.players.add(playerToAdd);
         return this.players;
     }
+
+
 
     public long getId() {
         return id;
@@ -203,5 +222,13 @@ public class Game {
 
     public void setStatus(List<Status> status) {
         this.status = status;
+    }
+
+    public long getCurrentJudge() {
+        return currentJudge;
+    }
+
+    public void setCurrentJudge(long currentJudge) {
+        this.currentJudge = currentJudge;
     }
 }
