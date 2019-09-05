@@ -1,6 +1,7 @@
 package io.codeagainsthumanity;
 
 import io.codeagainsthumanity.models.BlackCard;
+import io.codeagainsthumanity.models.Game;
 import io.codeagainsthumanity.models.WhiteCard;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,12 +14,18 @@ import static org.junit.Assert.*;
 public class PopulateDeckGSONTest {
     //instance
     PopulateDeckGSON p = new PopulateDeckGSON();
+    Game game = new Game();
 
     @Before
     public void setUp() throws Exception {
         //arraylists of both decks
         ArrayList<WhiteCard> w = p.readWhiteFileGSON();
         ArrayList<BlackCard> b = p.readBlackFileGSON();
+    }
+
+    @Test
+    public void gameTest() {
+        game.getStatus();
     }
 
     @Test

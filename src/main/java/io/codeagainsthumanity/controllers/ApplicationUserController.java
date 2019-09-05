@@ -48,6 +48,7 @@ public class ApplicationUserController {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("user", user);
         m.addAttribute("principalUser", p);
+        m.addAttribute("status", user.getStatus());
         return "profile";
     }
 

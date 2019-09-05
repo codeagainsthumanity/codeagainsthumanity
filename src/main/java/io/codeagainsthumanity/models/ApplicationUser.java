@@ -22,8 +22,8 @@ public class ApplicationUser implements UserDetails {
     String fullName;
 
     //setting up relationships with other models
-    @OneToMany
-    Set<Status> status;
+    @OneToMany(fetch = FetchType.EAGER)
+    List<Status> status;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -75,6 +75,14 @@ public class ApplicationUser implements UserDetails {
 
     public void setMyGames(List<Game> myGames) {
         this.myGames = myGames;
+    }
+
+    public List<Status> getStatus() {
+        return status;
+    }
+
+    public void setStatus(List<Status> status) {
+        this.status = status;
     }
 
     //methods

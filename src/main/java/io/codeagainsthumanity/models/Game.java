@@ -18,7 +18,7 @@ public class Game {
     boolean showRules;
 
     @OneToMany
-    Set<Status> status;
+    List<Status> status;
     //user many statuses
     //game has many statuses
     // create status class
@@ -195,5 +195,13 @@ public class Game {
 
     public void setPlayers(List<ApplicationUser> players) {
         this.players = players;
+    }
+
+    public List<Status> getStatus() {
+        return status;
+    }
+
+    public void setStatus(List<Status> status) {
+        this.status = status;
     }
 }

@@ -45,6 +45,7 @@ public class GameController {
 
         //use method to add the method to the users list of games
         gameOwner.addToMyGames(newGame);
+//        gameOwner.setStatus(); //status code for player is set to 0
 
         //save databases
         gameRepository.save(newGame);
