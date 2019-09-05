@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,7 +13,11 @@
     <h2>Games: </h2>
     <ul></ul>
     <div th:each="game: ${user.myGames}" >
-        <li><a th:href ="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>: <span th:text="${game.statusOfGame}"></span></li>
+        <li><a th:href ="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>:
+            <div th:each="s : ${status}">
+                <span th:text="${s}"></span></div></li>
+            </div>
+
     </div>
 
 </div>
