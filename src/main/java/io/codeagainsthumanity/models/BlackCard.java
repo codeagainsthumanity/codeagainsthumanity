@@ -20,6 +20,7 @@ public class BlackCard {
 //    @ManyToOne
 //    Deck deck;
 
+    public BlackCard(){};
 
     public BlackCard(String text, int pick) {
         this.text = text;

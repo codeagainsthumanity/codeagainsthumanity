@@ -56,8 +56,11 @@ public class GameController {
 
     @GetMapping ("/game/{gameCode}")
     public String getGame(Principal p, Model m, @PathVariable double gameCode){
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("currentGame", gameRepository.findByGameCode(gameCode));
         m.addAttribute("principalUser", p);
+        m.addAttribute("user", user);
+
         return "gameroom";
     }
 

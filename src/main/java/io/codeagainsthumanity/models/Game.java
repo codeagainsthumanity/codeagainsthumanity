@@ -70,6 +70,7 @@ public class Game {
         this.gameCode = gameCode;
         this.players = createPlayerList(gameOwner);
         this.currentBlack = randomBlackCard();
+        this.hands =  new HashMap<>();
     }
 
     //methods
@@ -101,8 +102,12 @@ public class Game {
         WhiteCard wc = randomWhiteCard();
         //white card text
         String text = wc.getText();
-        //players hand, add text
-        this.getHands().get(id).add(text);
+        //players hand
+        List<String> hand = this.getHands().get(id);
+        //add text
+        hand.add(text);
+        //save list back into the hashmap
+        this.getHands().put(id, hand);
     }
     //method to remove a specific card from users hand
     public void removeCardFromHand(Long id, String wc){
