@@ -26,6 +26,7 @@ public class BlackCard {
         this.pick = pick;
     }
 
+    public BlackCard(){}
     //getters and setters
     public long getId() {
         return id;

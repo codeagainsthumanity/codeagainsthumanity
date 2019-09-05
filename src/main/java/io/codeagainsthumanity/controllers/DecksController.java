@@ -36,7 +36,7 @@ public class DecksController {
         gameRepository.save(game);
         return new RedirectView(("/game/" + gameCode));
 
-
+    }
         //passing from html we get a maybe string? of some value from the form,
         //wc1 through wc7.  the name on a radio button is shared, but id unique.
 
