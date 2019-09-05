@@ -21,9 +21,10 @@ public class DecksController {
     @Autowired
     WhiteCardRepository whiteCardRepository;
 
-
+  
     @PostMapping("/judgeWhiteCard")
     public RedirectView judgeWhiteCard(double gameCode, Principal p, String choice) {
+
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         // currentJudge selects fave wc from options
         // selected card becomes previousWhite
@@ -37,7 +38,9 @@ public class DecksController {
 
 
         //passing from html we get a maybe string? of some value from the form,
-        //wc1 through wc7
+        //wc1 through wc7.  the name on a radio button is shared, but id unique.
+
+        //the game owns the decks, active and previous cards, variables.
 
 //        gameToJoin.addPlayer(user);
 //        //use method to add the method to the users list of games
@@ -45,9 +48,6 @@ public class DecksController {
 //        //save databases
 //        gameRepository.save(gameToJoin);
         //applicationUserRepository.save(user);
-
-
-    }
 
     @PostMapping("/playWhiteCard")
     public RedirectView playerWhiteCard(double gameCode, Principal p, String choice) {

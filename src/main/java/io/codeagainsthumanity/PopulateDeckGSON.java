@@ -68,7 +68,7 @@ public class PopulateDeckGSON {
 
             while ((line = reader.readLine()) != null) {
                 text.append(line + "\n");
-                System.out.print(text);
+                //System.out.print(text);
             }
 
             // Input from json

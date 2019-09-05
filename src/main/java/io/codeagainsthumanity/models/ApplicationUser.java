@@ -18,6 +18,7 @@ public class ApplicationUser implements UserDetails {
 
     @Column(unique=true)
     String username;
+
     String password;
     String fullName;
 
@@ -32,6 +33,7 @@ public class ApplicationUser implements UserDetails {
             inverseJoinColumns = @JoinColumn(name="player", referencedColumnName = "id")
             )
     List<Game> myGames;
+
 
     // constructors
     public ApplicationUser(){}
@@ -84,6 +86,7 @@ public class ApplicationUser implements UserDetails {
     public void setStatus(List<Status> status) {
         this.status = status;
     }
+
 
     //methods
     public void addToMyGames(Game game){
