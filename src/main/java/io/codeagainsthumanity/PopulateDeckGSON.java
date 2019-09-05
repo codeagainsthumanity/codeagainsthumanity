@@ -19,11 +19,23 @@ public class PopulateDeckGSON {
             //start gson
             Gson gson = new Gson();
             //path
-            String path = "./src/main/resources/static/blackCards.json";
+            //String path = "./src/main/resources/static/blackCards.json";
             //scanner reads file
-            String text = new String (Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+            //String text = new String (Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
             //creates from text, list object
-            BlackDeck blackDeck = gson.fromJson(text, BlackDeck.class);
+
+            InputStream in;
+            in = getClass().getResourceAsStream("/static/blackCards.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+            StringBuilder text = new StringBuilder();
+            String line = null;
+
+            while ((line = reader.readLine()) != null) {
+                text.append(line + "\n");
+            }
+
+            BlackDeck blackDeck = gson.fromJson(String.valueOf(text), BlackDeck.class);
             //unwrap the deck into cards.
             ArrayList<BlackCard> blackCards = blackDeck.getBlackCards();
 
@@ -43,11 +55,24 @@ public class PopulateDeckGSON {
             //start gson
             Gson gson = new Gson();
             //path
-            String path = "./src/main/resources/static/whiteCards.json";
+            //String path = "./src/main/resources/static/whiteCards.json";
             //scanner reads file
-            String text = new String (Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+            //String text = new String (Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+
+            InputStream in;
+            in = getClass().getResourceAsStream("/static/whiteCards.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+            StringBuilder text = new StringBuilder();
+            String line = null;
+
+            while ((line = reader.readLine()) != null) {
+                text.append(line + "\n");
+                System.out.print(text);
+            }
+
             // Input from json
-            WhiteDeck whiteDeck = gson.fromJson(text, WhiteDeck.class);
+            WhiteDeck whiteDeck = gson.fromJson(String.valueOf(text), WhiteDeck.class);
             //unwrap the deck into cards.
             ArrayList<String> whiteCards = whiteDeck.getWhiteCards();
             //output structure
