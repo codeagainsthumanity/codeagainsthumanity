@@ -21,29 +21,12 @@ public class DecksController {
     @Autowired
     WhiteCardRepository whiteCardRepository;
 
-
-    @PostMapping("/judgeWhiteCard")
-    public RedirectView judgeWhiteCard(double gameCode, Principal p, String choice){
-        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
-
-
-        //passing from html we get a maybe string? of some value from the form,
-        //wc1 through wc7
-
-//        gameToJoin.addPlayer(user);
-//        //use method to add the method to the users list of games
-//        user.addToMyGames(gameToJoin);
-//        //save databases
-//        gameRepository.save(gameToJoin);
-        //applicationUserRepository.save(user);
-
-        return new RedirectView("/game/" + gameCode);
-    }
-
     @PostMapping("/playWhiteCard")
-    public RedirectView playerWhiteCard(double gameCode, Principal p, String choice){
+    public RedirectView playerWhiteCard(double gameCode, Principal p, String whitecard){
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
 
+
+        //
 
 //        Game gameToJoin = gameRepository.findByGameCode(gameCode);
 //        gameToJoin.addPlayer(user);
@@ -52,6 +35,28 @@ public class DecksController {
 //        //save databases
 //        gameRepository.save(gameToJoin);
 //        //applicationUserRepository.save(user);
+
+        return new RedirectView("/game/" + gameCode);
+    }
+
+
+    @PostMapping("/judgeWhiteCard")
+    public RedirectView judgeWhiteCard(double gameCode, Principal p, String winner){
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+
+
+        //passing from html we get a maybe string? of some value from the form,
+        //wc1 through wc7.  the name on a radio button is shared, but id unique.
+
+        //the game owns the decks, active and previous cards, variables.
+
+
+//        gameToJoin.addPlayer(user);
+//        //use method to add the method to the users list of games
+//        user.addToMyGames(gameToJoin);
+//        //save databases
+//        gameRepository.save(gameToJoin);
+        //applicationUserRepository.save(user);
 
         return new RedirectView("/game/" + gameCode);
     }

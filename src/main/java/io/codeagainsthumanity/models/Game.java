@@ -36,15 +36,19 @@ public class Game {
     WhiteCard previousWhite;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    List<WhiteCard> toBeJudged;
-
-    @OneToMany(cascade = CascadeType.PERSIST)
     List<WhiteCard> whiteDeck;
     @OneToMany(cascade = CascadeType.PERSIST)
     List<BlackCard> blackDeck;
 
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    List<WhiteCard> hand;
+    //the key is the users unique ID.  the list of string is the users hand.
+    //pass in id, get a hand.
+    HashMap<Long, List<String>> hands;
+
+    //white cards to be judged.
+    @OneToMany
+    List<WhiteCard> toBeJudged;
+
+
 
     @CreationTimestamp
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,6 +102,26 @@ public class Game {
     public List<ApplicationUser> addPlayer(ApplicationUser playerToAdd){
         this.players.add(playerToAdd);
         return this.players;
+    }
+
+    //method to add and remove a specific card from hand
+    public void addCardToHand(){
+
+    }
+
+    public void removeCardFromHand(){
+
+    }
+
+    //gets and sets
+
+
+    public HashMap<Long, List<String>> getHands() {
+        return hands;
+    }
+
+    public void setHands(HashMap<Long, List<String>> hands) {
+        this.hands = hands;
     }
 
     public long getId() {
