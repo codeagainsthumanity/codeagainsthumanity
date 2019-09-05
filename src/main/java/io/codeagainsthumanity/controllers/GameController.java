@@ -22,6 +22,9 @@ public class GameController {
     ApplicationUserRepository applicationUserRepository;
 
     @Autowired
+    StatusRepository statusRepository;
+
+    @Autowired
     BlackCardRepository blackCardRepository;
     @Autowired
     WhiteCardRepository whiteCardRepository;
@@ -42,21 +45,29 @@ public class GameController {
         ApplicationUser gameOwner = applicationUserRepository.findByUsername(p.getName());
         double gameCode = Math.random() * 100;
         Game newGame = new Game(gameOwner, gameCode);
-
+        Status status = new Status();
         //use method to add the method to the users list of games
         gameOwner.addToMyGames(newGame);
-//        gameOwner.setStatus(); //status code for player is set to 0
+        status.setStatusCode(0); //status code for first player is set to 0
+//        status.set
+        status.setGame(newGame);
+        status.setPlayer(gameOwner);
+        System.out.println("STATUS CODE: " + status.getStatusCode());
 
         //save databases
         gameRepository.save(newGame);
         applicationUserRepository.save(gameOwner);
+        statusRepository.save(status);
 
         return new RedirectView("/game/" + gameCode);
     }
 
     @GetMapping ("/game/{gameCode}")
     public String getGame(Principal p, Model m, @PathVariable double gameCode){
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+
         m.addAttribute("currentGame", gameRepository.findByGameCode(gameCode));
+
         m.addAttribute("principalUser", p);
         return "gameroom";
     }

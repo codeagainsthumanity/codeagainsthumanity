@@ -1,9 +1,6 @@
 package io.codeagainsthumanity.controllers;
 
-import io.codeagainsthumanity.models.ApplicationUser;
-import io.codeagainsthumanity.models.ApplicationUserRepository;
-import io.codeagainsthumanity.models.Game;
-import io.codeagainsthumanity.models.GameRepository;
+import io.codeagainsthumanity.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,6 +27,9 @@ public class ApplicationUserController {
     @Autowired
     GameRepository gameRepository;
 
+    @Autowired
+    StatusRepository statusRepository;
+
     @GetMapping ("/login")
     public String getLoginPage(Principal p, Model m){
         m.addAttribute("principalUser", p);
@@ -46,9 +46,10 @@ public class ApplicationUserController {
     @GetMapping ("/profile")
     public String getMyProfile (Principal p, Model m) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+
         m.addAttribute("user", user);
         m.addAttribute("principalUser", p);
-        m.addAttribute("status", user.getStatus());
+
         return "profile";
     }
 
@@ -78,12 +79,17 @@ public class ApplicationUserController {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         Game gameToJoin = gameRepository.findByGameCode(gameCode);
         gameToJoin.addPlayer(user);
-
+        Status newStatus = new Status();
         //use method to add the method to the users list of games
         user.addToMyGames(gameToJoin);
 
+        newStatus.setStatusCode(1); //status code for a joining user is 1
+//        status.set
+        newStatus.setGame(gameToJoin);
+        newStatus.setPlayer(user);
         //save databases
         gameRepository.save(gameToJoin);
+        statusRepository.save(newStatus);
         //applicationUserRepository.save(user);
 
         return new RedirectView("/game/" + gameToJoin.getGameCode());
