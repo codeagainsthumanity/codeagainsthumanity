@@ -117,7 +117,30 @@ public class Game {
         return this.players;
     }
 
+    public void swapJudge() {
+        int idx = findPlayerById(this.currentJudge);
+        System.out.println("we needa swap" + this.currentJudge);
+        System.out.println("index is " + idx);
+        if (idx == this.players.size() - 1) {
+            this.currentJudge = this.players.get(0).id;
+            System.out.println("end of list" + this.currentJudge);
+        }
+        else {
+            this.currentJudge = this.players.get(idx + 1).id;
+            System.out.println("somewhere over the rainbow" + this.currentJudge);
+        }
 
+    }
+
+    public int findPlayerById(long currentJudgeId) {
+        //loop through players
+        for ( int i = 0; i < this.players.size(); i++) {
+            if ( this.players.get(i).id == currentJudgeId) {
+                return i;
+            }
+        }
+        return 0;
+    }
 
     public long getId() {
         return id;
