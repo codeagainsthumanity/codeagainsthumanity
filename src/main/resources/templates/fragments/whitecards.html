@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  //judge hand/form
 <div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
 
-    <form method="POST" action="/dummyJudge">
+         <h2>Select your favorite!</h2>
+        <form  method="POST" action="/judgeWhiteCard">
+            <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
+
+<!--     <form method="POST" action="/dummyJudge">
         <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
         <input type="submit" class="btn btn-primary" value="Judge this round">
-    </form>
-    <h2>Select your favorite!</h2>
-    
-        <form method="POST" action="/judgeWhiteCard">
+    </form> -->
             <label>
                 <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
                 <div class="card card-body bg-light whitecard">White Card</div>
@@ -23,13 +25,13 @@
                 <div class="card card-body bg-light whitecard">White Card</div>
             </label>
 
-
-
             <br>
             <button class="btn btn-primary" type="submit">Submit form</button>
 
         </form>
     </div>
+  
+  // player form/hand
 <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
     <h2>Select a white card to play</h2>
     <form method="POST" action="/playWhiteCard">
@@ -61,7 +63,6 @@
             <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard7}">
             <div class="card card-body bg-light whitecard">White Card</div>
         </label>
-
 
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>

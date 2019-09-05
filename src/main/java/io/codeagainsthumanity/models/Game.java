@@ -23,6 +23,7 @@ public class Game {
     // true, judge has picked winner and will not be judge anymore, false- players or judge are waiting for cards
     boolean hasBeenJudged;
 
+
     @OneToMany(fetch = FetchType.EAGER)
     List<Status> status;
     //user many statuses
@@ -66,7 +67,21 @@ public class Game {
     @ManyToMany (mappedBy = "myGames")
     List<ApplicationUser> players;
 
+
+//    List<Boolean> submitted;
+
+    //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
+//    List<WhiteCard> currentWhiteDeck;
+//
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
+//    List<BlackCard> currentBlackDeck;
+
+//    @OneToOne(mappedBy = "gameInstance")
+//    BlackCard activeBlackCard;
+
+
     //constructors
+
     public Game(){};
 
 
@@ -87,6 +102,9 @@ public class Game {
         this.currentBlack = randomBlackCard();
         this.hasBeenJudged = false;
         this.currentJudge = gameOwner.id;
+
+//        this.submitted.add(false);
+
     }
 
     //methods

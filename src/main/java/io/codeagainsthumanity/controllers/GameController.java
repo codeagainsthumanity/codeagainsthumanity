@@ -72,15 +72,7 @@ public class GameController {
         return "gameroom";
     }
 
-    @PostMapping("/dummyJudge")
-    public RedirectView judgeCards(double gameCode) {
-        Game game = gameRepository.findByGameCode(gameCode);
-        game.swapJudge();
 
-        gameRepository.save(game);
-        return new RedirectView(("/game/" + gameCode));
-
-    }
 
     //TODO:
     // joinGame Post route(pass in current user)
