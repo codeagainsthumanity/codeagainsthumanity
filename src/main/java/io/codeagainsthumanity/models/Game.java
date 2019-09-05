@@ -202,6 +202,7 @@ public class Game {
 
     public void setHands(HashMap<Long, List<String>> hands) {
         this.hands = hands;
+    }
 
     public void swapJudge() {
         int idx = findPlayerById(this.currentJudge);
