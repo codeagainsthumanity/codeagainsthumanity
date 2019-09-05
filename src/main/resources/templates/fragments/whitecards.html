@@ -1,6 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-    <div th:fragment="toplay" class="container whitecards">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+
+    <div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
+
+        <form method="POST" action="/dummyJudge">
+            <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
+            <input type="submit" class="btn btn-primary" value="Judge this round">
+        </form>
+        <h2>Select your favorite!</h2>
+        <form  method="POST" action="/judgeWhiteCard">
+            <label>
+                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="winner" value="answer2">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+            <label>
+                <input type="radio" class="card-input-element d-none" name="winner" value="answer3">
+                <div class="card card-body bg-light whitecard">White Card</div>
+            </label>
+
+            <br>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+
+        </form>
+    </div>
+
+
+    <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
         <h2>Select a white card to play</h2>
         <form method="POST" action="/playWhiteCard">
             <label>
@@ -31,33 +61,6 @@
                 <input type="radio" class="card-input-element d-none" name="whitecard" value="wc7">
                 <div class="card card-body bg-light whitecard">White Card</div>
             </label>
-
-
-            <br>
-            <button class="btn btn-primary" type="submit">Submit form</button>
-
-        </form>
-    </div>
-
-
-
-
-    <div th:fragment="tojudge" class="container whitecards">
-        <h2>Select your favorite!</h2>
-        <form method="POST" action="/judgeWhiteCard">
-            <label>
-                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="winner" value="answer2">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="winner" value="answer3">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-
 
 
             <br>

@@ -16,6 +16,12 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     boolean showRules;
+    // creating a player object that will be the judge
+
+    long currentJudge;
+
+    // true, judge has picked winner and will not be judge anymore, false- players or judge are waiting for cards
+    boolean hasBeenJudged;
 
     @OneToMany(fetch = FetchType.EAGER)
     List<Status> status;
@@ -69,12 +75,23 @@ public class Game {
 
     public Game(){};
 
+
+    public boolean isHasBeenJudged() {
+        return hasBeenJudged;
+    }
+
+    public void setHasBeenJudged(boolean hasBeenJudged) {
+        this.hasBeenJudged = hasBeenJudged;
+    }
+
     public Game(ApplicationUser gameOwner, double gameCode) throws IOException {
         this.showRules = true;
         this.whiteDeck = populateWhiteDeck();
         this.blackDeck = populateBlackDeck();
         this.gameCode = gameCode;
         this.players = createPlayerList(gameOwner);
+        this.hasBeenJudged = false;
+        this.currentJudge = gameOwner.id;
 
     }
 
@@ -98,6 +115,31 @@ public class Game {
     public List<ApplicationUser> addPlayer(ApplicationUser playerToAdd){
         this.players.add(playerToAdd);
         return this.players;
+    }
+
+    public void swapJudge() {
+        int idx = findPlayerById(this.currentJudge);
+        System.out.println("we needa swap" + this.currentJudge);
+        System.out.println("index is " + idx);
+        if (idx == this.players.size() - 1) {
+            this.currentJudge = this.players.get(0).id;
+            System.out.println("end of list" + this.currentJudge);
+        }
+        else {
+            this.currentJudge = this.players.get(idx + 1).id;
+            System.out.println("somewhere over the rainbow" + this.currentJudge);
+        }
+
+    }
+
+    public int findPlayerById(long currentJudgeId) {
+        //loop through players
+        for ( int i = 0; i < this.players.size(); i++) {
+            if ( this.players.get(i).id == currentJudgeId) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     public long getId() {
@@ -203,5 +245,13 @@ public class Game {
 
     public void setStatus(List<Status> status) {
         this.status = status;
+    }
+
+    public long getCurrentJudge() {
+        return currentJudge;
+    }
+
+    public void setCurrentJudge(long currentJudge) {
+        this.currentJudge = currentJudge;
     }
 }
