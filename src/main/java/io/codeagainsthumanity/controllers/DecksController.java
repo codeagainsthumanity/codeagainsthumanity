@@ -23,8 +23,17 @@ public class DecksController {
 
 
     @PostMapping("/judgeWhiteCard")
-    public RedirectView judgeWhiteCard(double gameCode, Principal p, String choice){
+    public RedirectView judgeWhiteCard(double gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        // currentJudge selects fave wc from options
+        // selected card becomes previousWhite
+        // currentBlack becomes previousBlack
+        //draw new Blackcard
+        //submitted now equals false
+        Game game = gameRepository.findByGameCode(gameCode);
+        game.swapJudge();
+        gameRepository.save(game);
+        return new RedirectView(("/game/" + gameCode));
 
 
         //passing from html we get a maybe string? of some value from the form,
@@ -37,21 +46,18 @@ public class DecksController {
 //        gameRepository.save(gameToJoin);
         //applicationUserRepository.save(user);
 
-        return new RedirectView("/game/" + gameCode);
+
     }
 
     @PostMapping("/playWhiteCard")
-    public RedirectView playerWhiteCard(double gameCode, Principal p, String choice){
+    public RedirectView playerWhiteCard(double gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+        Game game = gameRepository.findByGameCode(gameCode);
 
-
-//        Game gameToJoin = gameRepository.findByGameCode(gameCode);
-//        gameToJoin.addPlayer(user);
-//        //use method to add the method to the users list of games
-//        user.addToMyGames(gameToJoin);
-//        //save databases
-//        gameRepository.save(gameToJoin);
-//        //applicationUserRepository.save(user);
+        //player selects white card and hits submit
+        //whitecard is added to the toBeJudge List
+        // player hand submitted is true and their hand/form is hidden until judged
+        // when submitted is false hand/form is shown
 
         return new RedirectView("/game/" + gameCode);
     }

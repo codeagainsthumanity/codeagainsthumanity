@@ -4,12 +4,11 @@
 
     <div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
 
-        <form method="POST" action="/dummyJudge">
-            <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
-            <input type="submit" class="btn btn-primary" value="Judge this round">
-        </form>
-        <h2>Select your favorite!</h2>
+
+
+         <h2>Select your favorite!</h2>
         <form  method="POST" action="/judgeWhiteCard">
+            <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
             <label>
                 <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
                 <div class="card card-body bg-light whitecard">White Card</div>

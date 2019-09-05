@@ -79,6 +79,7 @@ public class ApplicationUserController {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         Game gameToJoin = gameRepository.findByGameCode(gameCode);
         gameToJoin.addPlayer(user);
+
         Status newStatus = new Status();
         //use method to add the method to the users list of games
         user.addToMyGames(gameToJoin);
