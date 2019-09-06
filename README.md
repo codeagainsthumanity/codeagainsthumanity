@@ -28,16 +28,20 @@ Code Against Humanity is a web version of the popular game, [Cards Against Human
 
 ## Screenshots
 
-Profile page with a list of games the user has joined:
+### Profile page with a list of games the user has joined:
+
 ![profile page](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/dev/src/main/resources/static/images/screenshots/profile.png)
 
-New game, waiting for others to join: 
+### New game, waiting for others to join: 
+
 ![waiting](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/dev/src/main/resources/static/images/screenshots/waiting.png)
 
-Playing a whitecard: 
+### Playing a whitecard: 
+
 ![play a white card](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/dev/src/main/resources/static/images/screenshots/playWhiteCard.png)
 
-Judge's screen
+### Judge's screen:
+
 ![judege's screen](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/dev/src/main/resources/static/images/screenshots/judge.png)
 
 
