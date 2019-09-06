@@ -19,6 +19,8 @@
 <!--                <div class="card card-body bg-light whitecard">White Card</div>-->
 <!--            </label>-->
 
+<!--            either we need to pass a hidden value for the gamecode here, or-->
+<!--            we need to access the gamecode from the controller: game.getGameCode()-->
             <br>
             <button class="btn btn-primary" type="submit">Submit form</button>
 
@@ -40,7 +42,7 @@
 <!--            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${currentGame.getHands().get(user.id).get(0)}">-->
 <!--            <div class="card card-body bg-light whitecard"><span th:text="${currentGame.getHands().get(user.id).get(0)}">white card text</span> </div>-->
 <!--        </label>-->
-
+        <input type="hidden" name="gameCode" th:id="${currentGame.getGameCode()}" />
 
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>

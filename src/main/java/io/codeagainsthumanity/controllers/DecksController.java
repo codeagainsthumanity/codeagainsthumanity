@@ -51,9 +51,13 @@ public class DecksController {
         //applicationUserRepository.save(user);
 
     @PostMapping("/playWhiteCard")
-    public RedirectView playerWhiteCard(double gameCode, Principal p, String choice) {
+    public RedirectView playerWhiteCard(String gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
-        Game game = gameRepository.findByGameCode(gameCode);
+        //TODO: emtpy string is empty on form submit.  passed that way?
+        Double gc = null;
+        gc.valueOf(gameCode);
+
+        Game game = gameRepository.findByGameCode(gc);
 
         //player selects white card and hits submit
         //whitecard is added to the toBeJudge List
