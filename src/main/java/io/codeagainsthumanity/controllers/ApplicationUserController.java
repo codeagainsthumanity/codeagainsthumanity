@@ -90,7 +90,6 @@ public class ApplicationUserController {
             WhiteCard wc = gameToJoin.randomWhiteCard();
             hand.add(wc.getText());
         }
-
         //then push hand into games hashmap, called hands.
         gameToJoin.getHands().put(user.getId(),hand);
 

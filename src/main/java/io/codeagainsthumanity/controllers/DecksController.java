@@ -35,7 +35,6 @@ public class DecksController {
         game.swapJudge();
         gameRepository.save(game);
         return new RedirectView(("/game/" + gameCode));
-
     }
         //passing from html we get a maybe string? of some value from the form,
         //wc1 through wc7.  the name on a radio button is shared, but id unique.
@@ -56,8 +55,13 @@ public class DecksController {
 
         //player selects white card and hits submit
         //whitecard is added to the toBeJudge List
+        WhiteCard wc = new WhiteCard(choice);
+        game.getToBeJudged().add(wc);
         // player hand submitted is true and their hand/form is hidden until judged
-        // when submitted is false hand/form is shown
+
+
+
+
 
         return new RedirectView("/game/" + gameCode);
     }
