@@ -51,6 +51,9 @@ public class Game {
     //pass in id, get a hand.
     HashMap<Long, List<String>> hands;
 
+    //has this user id already submitted their white card?
+    HashMap<Long, Boolean> submitted;
+
     //white cards to be judged.
     @OneToMany
     List<WhiteCard> toBeJudged;
@@ -70,20 +73,9 @@ public class Game {
 
 //    List<Boolean> submitted;
 
-    //    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-//    List<WhiteCard> currentWhiteDeck;
-//
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameInstance")
-//    List<BlackCard> currentBlackDeck;
-
-//    @OneToOne(mappedBy = "gameInstance")
-//    BlackCard activeBlackCard;
-
 
     //constructors
-
     public Game(){};
-
 
     public boolean isHasBeenJudged() {
         return hasBeenJudged;
@@ -103,8 +95,7 @@ public class Game {
         this.hasBeenJudged = false;
         this.currentJudge = gameOwner.id;
         this.hands =  new HashMap<>();
-        //this.submitted.add(false);
-
+        this.submitted = new HashMap<>();
     }
 
     //methods
@@ -128,6 +119,14 @@ public class Game {
     public List<ApplicationUser> addPlayer(ApplicationUser playerToAdd){
         this.players.add(playerToAdd);
         return this.players;
+    }
+
+    public void setBooleanToSubmitted(Long id, Boolean bool){
+        this.getSubmitted().put(id, bool);
+    }
+
+    public Boolean getBooleanToSubmitted(Long id, Boolean bool){
+        return this.getSubmitted().get(id);
     }
 
     //method to add a card to users hand
@@ -231,6 +230,14 @@ public class Game {
             }
         }
         return 0;
+    }
+
+    public HashMap<Long, Boolean> getSubmitted() {
+        return submitted;
+    }
+
+    public void setSubmitted(HashMap<Long, Boolean> submitted) {
+        this.submitted = submitted;
     }
 
     public long getId() {
