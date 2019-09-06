@@ -26,7 +26,11 @@ Code Against Humanity is a web version of the popular game, [Cards Against Human
 - [ER Diagram](https://app.sqldbm.com/PostgreSQL/Edit/p77889/)
 
 
-##Resources:
+## Screenshots
+
+
+
+## Resources:
 
 - https://www.baeldung.com/jpa-one-to-one
 - https://www.baeldung.com/spring-data-rest-relationships
