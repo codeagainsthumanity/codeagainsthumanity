@@ -9,16 +9,19 @@
 <nav th:replace="fragments/nav :: nav" class="nav"></nav>
 <div class="container">
     <h1>Profile: <span th:text="${user.fullName}"></span></h1>
-    <p>Profile details will go here.</p>
-    <h2>Games: </h2>
-    <ul></ul>
-    <div th:each="game: ${user.myGames}">
-        <li><a th:href="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>: <span th:text="${user.status}"></span>
+    <p>Welcome to Code Against Humanity.</p>
+    <div th:if="${user.myGames.size()!=0}">
+        <h2>Games: </h2>
+        <ul></ul>
+        <div th:each="game: ${user.myGames}">
+            <li><a th:href="${'/game/' + game.gameCode}"><span th:text="${game.gameCode}"></span></a>
 
-<!--            <div th:each="status : ${user.status}">-->
-<!--                <span th:text="${status.statusCode}"></span>-->
-<!--            hello</div></li>-->
+    <!--            <div th:each="status : ${user.status}">-->
+    <!--                <span th:text="${status.statusCode}"></span>-->
+    <!--            hello</div></li>-->
+        </div>
     </div>
+    <div th:if="${user.myGames.size()==0}">You aren't playing any games. <a href="/allGames">Find a game</a> to join or create a new one. </div>
 
 </div>
 

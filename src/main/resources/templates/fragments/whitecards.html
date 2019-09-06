@@ -2,34 +2,45 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
   //judge hand/form
-<div th:if="${user.id == currentGame.currentJudge}" th:fragment="tojudge" class="container whitecards">
+  <div th:fragment="tojudge"  th:if="${user.id == currentGame.currentJudge}"  class="container whitecards">
+      <div th:if="${currentGame.getToBeJudged().size() == 0}"><p style="text-align:center; padding-top:50px;" class="text-danger"><strong>Waiting for other players to submit whitecards.</strong></p></div>
+      <div th:unless="${currentGame.getToBeJudged().size() == 0}">
 
-         <h2>Select your favorite!</h2>
-        <form  method="POST" action="/judgeWhiteCard">
-            <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
+      <h2>Select your favorite!</h2>
+      <form  method="POST" action="/judgeWhiteCard">
+          <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
 
-<!--            //for loop here-->
-            <label th:each="wc : ${currentGame.getToBeJudged()}">
-<!--                <label th:each="wc : ${currentGame.getToBeJudged().get(user.id)}">-->
-                <input type="radio" class="card-input-element d-none" name="winner" th:value="${wc}">
-                <div class="card card-body bg-light whitecard"><span th:text="${wc}"></span> </div>
-            </label>
+          <!--            //for loop here-->
+          <label th:each="wc : ${currentGame.getToBeJudged()}">
+              <!--                <label th:each="wc : ${currentGame.getToBeJudged().get(user.id)}">-->
+              <input type="radio" class="card-input-element d-none" name="winner" th:value="${wc}">
+              <div class="card card-body bg-light whitecard"><span th:text="${wc}"></span> </div>
+          </label>
 
-<!--            <label>-->
-<!--                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">-->
-<!--                <div class="card card-body bg-light whitecard">White Card</div>-->
-<!--            </label>-->
+          <!--            <label>-->
+          <!--                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">-->
+          <!--                <div class="card card-body bg-light whitecard">White Card</div>-->
+          <!--            </label>-->
 
-<!--            either we need to pass a hidden value for the gamecode here, or-->
-<!--            we need to access the gamecode from the controller: game.getGameCode()-->
-            <br>
-            <button class="btn btn-primary" type="submit">Submit form</button>
+          <!--            either we need to pass a hidden value for the gamecode here, or-->
+          <!--            we need to access the gamecode from the controller: game.getGameCode()-->
+          <br>
+          <button class="btn btn-primary" type="submit">Submit form</button>
 
-        </form>
-    </div>
+      </form>
+
+
+      </div>
+
+  </div>
+
 
   // player form/hand
 <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
+    <div th:if="${currentGame.getBooleanToSubmitted(user.getId()) == true}">
+        <p style="text-align:center; padding-top:50px;" class="text-danger"><strong>Waiting for the judge to pick a winning card.</strong></p>
+    </div>
+
     <div th:if="${currentGame.getBooleanToSubmitted(user.getId()) != true}">
     <h2>Select a white card to play</h2>
     <form method="POST" action="/playWhiteCard">

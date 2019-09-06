@@ -8,8 +8,9 @@
 </head>
 <body>
 <nav th:replace="fragments/nav :: nav" class="nav"></nav>
-<h1 th:text="${currentGame.gameCode}">Gameroom</h1>
+
 <div class="container gameboard">
+    <h1 th:text="${currentGame.gameCode}">Gameroom</h1>
     <div class="row">
         <div class="col bg-light">
             <p>Previous round's winner & combo goes here</p>
@@ -20,7 +21,6 @@
             </div>
         </div>
         <div class="col bg-light">
-          <h4 >Current Judge: <span th:text="${currentGame.currentJudge}"></span></h4>
             <h4>Players: </h4>
             <div th:each="player: ${currentGame.players}" >
                 <li><span th:text="${player.fullName}"></span>

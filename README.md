@@ -28,29 +28,10 @@ Code Against Humanity is a web version of the popular game, [Cards Against Human
 - [Trello Board](https://trello.com/invite/b/zFg0OoMm/27a4a4005d314d63934ae4a0ae3bd995/sudobangbang)
 - [ER Diagram](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/master/projectdocs/erd.sql)
 
-## Change Log
 
-### Day 0 - Friday, 8/30/19
+##Resources:
 
-### Day 1 - Tuesday, 9/3/19
-
-### Day 2 - Wednesday, 9/4/19
-
-### Day 3 - Thursday, 9/5/19
-
-## Things required for the Readme
-
-- An overview of the application and its functionality
-- Screenshots of the application
-- A link to the deployed application
-- A list of technologies used in the application
-
-Resources:
-
-https://www.baeldung.com/jpa-one-to-one
-
-https://www.baeldung.com/spring-data-rest-relationships
-
-https://thoughts-on-java.org/persist-creation-update-timestamps-hibernate/
-
-https://www.baeldung.com/hibernate-one-to-many
+- https://www.baeldung.com/jpa-one-to-one
+- https://www.baeldung.com/spring-data-rest-relationships
+- https://thoughts-on-java.org/persist-creation-update-timestamps-hibernate/
+- https://www.baeldung.com/hibernate-one-to-many
