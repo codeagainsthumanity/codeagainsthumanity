@@ -43,6 +43,11 @@ public class ApplicationUserController {
 
     }
 
+    @GetMapping("/aboutUs")
+    public String getAboutUsPage() {
+        return "about";
+    }
+
     @GetMapping ("/profile")
     public String getMyProfile (Principal p, Model m) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());

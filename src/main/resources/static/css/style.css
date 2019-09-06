@@ -1,0 +1,42 @@
+*{
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("/images/milkyWay.jpg");
+  margin: auto 0;
+}
+
+.div-image{
+  margin-top: 50px;
+  margin-bottom: 15px;
+
+
+}
+.div-image img {
+  margin: auto;
+  display: block;
+  width: 50%;
+  height: 50%;
+}
+.character {
+  width: 320px;
+  margin: 10px;
+  float: left;
+
+}
+
+.character:nth-child(3) span {
+  font-style: italic;
+}
+h2 {
+  font-size: 2.5em;
+  text-align: center;
+  font-weight: bolder;
+  color: white;
+}
+p {
+  font-size: 1.2em;
+  background-color:black;
+  color: white;
+}

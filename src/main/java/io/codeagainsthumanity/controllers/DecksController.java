@@ -51,7 +51,7 @@ public class DecksController {
         //applicationUserRepository.save(user);
 
     @PostMapping("/playWhiteCard")
-    public RedirectView playerWhiteCard(double gameCode, Principal p, String choice) {
+    public RedirectView playerWhiteCard(Double gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         Game game = gameRepository.findByGameCode(gameCode);
 
