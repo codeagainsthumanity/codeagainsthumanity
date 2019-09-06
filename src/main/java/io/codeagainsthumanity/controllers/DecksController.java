@@ -53,11 +53,12 @@ public class DecksController {
     @PostMapping("/playWhiteCard")
     public RedirectView playerWhiteCard(String gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
-        //TODO: emtpy string is empty on form submit.  passed that way?
-        Double gc = null;
-        gc.valueOf(gameCode);
 
-        Game game = gameRepository.findByGameCode(gc);
+        //cast string to double
+        double dgc = Double.parseDouble(gameCode);
+        System.out.println("DGC: "+ dgc);
+        //find game by double game code
+        Game game = gameRepository.findByGameCode(dgc);
 
         //player selects white card and hits submit
         //whitecard is added to the toBeJudge List
@@ -67,7 +68,8 @@ public class DecksController {
         Boolean bool = true;
         game.setBooleanToSubmitted(user.getId(), bool);
 
-        //player drops that card from their hand
+        //added to avoid an error.
+        whiteCardRepository.save(wc);
 
         //user draws new card
         List<String> hand = new ArrayList<>();
@@ -77,6 +79,7 @@ public class DecksController {
                 hand.add(cardString);
             }
             else {
+                //player drops that card from their hand, grabs new.
                 WhiteCard random = game.randomWhiteCard();
                 String randomString = random.getText();
                 hand.add(randomString);
@@ -88,7 +91,6 @@ public class DecksController {
         //save repos
         applicationUserRepository.save(user);
         gameRepository.save(game);
-
 
         return new RedirectView("/game/" + gameCode);
     }

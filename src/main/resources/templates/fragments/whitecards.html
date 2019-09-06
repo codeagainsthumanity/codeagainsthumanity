@@ -30,7 +30,7 @@
   // player form/hand
 <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
     <h2>Select a white card to play</h2>
-    <form method="POST" action="/playWhiteCard">
+    <form  method="POST" action="/playWhiteCard">
 
         <!--            //for loop here-->
         <label th:each="cardText : ${currentGame.getHands().get(user.id)}">
@@ -42,7 +42,7 @@
 <!--            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${currentGame.getHands().get(user.id).get(0)}">-->
 <!--            <div class="card card-body bg-light whitecard"><span th:text="${currentGame.getHands().get(user.id).get(0)}">white card text</span> </div>-->
 <!--        </label>-->
-        <input type="hidden" name="gameCode" th:id="${currentGame.getGameCode()}" />
+        <input type="hidden" name="gameCode" th:value="${currentGame.getGameCode().toString()}" />
 
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>
