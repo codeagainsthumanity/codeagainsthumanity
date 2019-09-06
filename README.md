@@ -29,7 +29,7 @@ Code Against Humanity is a web version of the popular game, [Cards Against Human
 - [ER Diagram](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/master/projectdocs/erd.sql)
 
 
-##Resources:
+## Resources:
 
 - https://www.baeldung.com/jpa-one-to-one
 - https://www.baeldung.com/spring-data-rest-relationships
