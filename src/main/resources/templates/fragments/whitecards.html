@@ -26,11 +26,12 @@
 
         </form>
     </div>
-  
+
   // player form/hand
 <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
+    <div th:if="${currentGame.getBooleanToSubmitted(user.getId()) != true}">
     <h2>Select a white card to play</h2>
-    <form  method="POST" action="/playWhiteCard">
+    <form method="POST" action="/playWhiteCard">
 
         <!--            //for loop here-->
         <label th:each="cardText : ${currentGame.getHands().get(user.id)}">
@@ -48,5 +49,6 @@
         <button class="btn btn-primary" type="submit">Submit form</button>
 
     </form>
+    </div>
 </div>
 </html>
