@@ -1,5 +1,6 @@
 # Code Against Humanity - Overview
 Deployed site: http://codeagainsthumanity.us-east-2.elasticbeanstalk.com
+Presentation deck: https://docs.google.com/presentation/d/1ytfabUB6yf2fZY-EX-syXBOE_u9B8zJp9_SF90DMr4U/edit?usp=sharing
 
 Team members: Jane Hur, Jack Kinne, Renee Messick
 
