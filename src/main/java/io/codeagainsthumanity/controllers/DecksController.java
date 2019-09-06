@@ -50,6 +50,8 @@ public class DecksController {
         game.getHands().put(user.getId(), hand);
 
         game.swapJudge();
+        List<WhiteCard> emtpy = new ArrayList<>();
+        game.setToBeJudged(emtpy);
         gameRepository.save(game);
 
         return new RedirectView(("/game/" + gameCode));
@@ -69,6 +71,8 @@ public class DecksController {
     @PostMapping("/playWhiteCard")
     public RedirectView playerWhiteCard(String gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+
+        System.out.println("Choice" + choice);
 
         //cast string to double
         double dgc = Double.parseDouble(gameCode);
