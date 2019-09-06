@@ -257,7 +257,7 @@ public class Game {
     }
 
 
-    public double getGameCode() {
+    public Double getGameCode() {
         return gameCode;
     }
 
