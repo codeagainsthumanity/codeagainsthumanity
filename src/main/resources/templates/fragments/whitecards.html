@@ -10,8 +10,9 @@
 
 <!--            //for loop here-->
             <label th:each="wc : ${currentGame.getToBeJudged()}">
-                <input type="radio" class="card-input-element d-none" name="winner" th:value="${wc.getText()}">
-                <div class="card card-body bg-light whitecard"><span th:text="${wc.getText()}"></span> </div>
+<!--                <label th:each="wc : ${currentGame.getToBeJudged().get(user.id)}">-->
+                <input type="radio" class="card-input-element d-none" name="winner" th:value="${wc}">
+                <div class="card card-body bg-light whitecard"><span th:text="${wc}"></span> </div>
             </label>
 
 <!--            <label>-->
@@ -19,14 +20,17 @@
 <!--                <div class="card card-body bg-light whitecard">White Card</div>-->
 <!--            </label>-->
 
+<!--            either we need to pass a hidden value for the gamecode here, or-->
+<!--            we need to access the gamecode from the controller: game.getGameCode()-->
             <br>
             <button class="btn btn-primary" type="submit">Submit form</button>
 
         </form>
     </div>
-  
+
   // player form/hand
 <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
+    <div th:if="${currentGame.getBooleanToSubmitted(user.getId()) != true}">
     <h2>Select a white card to play</h2>
     <form method="POST" action="/playWhiteCard">
         <!--            //for loop here-->
@@ -39,11 +43,12 @@
 <!--            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${currentGame.getHands().get(user.id).get(0)}">-->
 <!--            <div class="card card-body bg-light whitecard"><span th:text="${currentGame.getHands().get(user.id).get(0)}">white card text</span> </div>-->
 <!--        </label>-->
-
+        <input type="hidden" name="gameCode" th:value="${currentGame.getGameCode().toString()}" />
 
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>
 
     </form>
+    </div>
 </div>
 </html>

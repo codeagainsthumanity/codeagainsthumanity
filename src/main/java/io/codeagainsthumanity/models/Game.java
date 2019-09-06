@@ -125,7 +125,7 @@ public class Game {
         this.getSubmitted().put(id, bool);
     }
 
-    public Boolean getBooleanToSubmitted(Long id, Boolean bool){
+    public Boolean getBooleanToSubmitted(Long id){
         return this.getSubmitted().get(id);
     }
 
