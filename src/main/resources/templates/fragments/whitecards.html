@@ -8,22 +8,16 @@
         <form  method="POST" action="/judgeWhiteCard">
             <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
 
-<!--     <form method="POST" action="/dummyJudge">
-        <input name="gameCode" id="gameCode" hidden th:value ="${currentGame.gameCode}">
-        <input type="submit" class="btn btn-primary" value="Judge this round">
-    </form> -->
-            <label>
-                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">
-                <div class="card card-body bg-light whitecard">White Card</div>
+<!--            //for loop here-->
+            <label th:each="wc : ${currentGame.getToBeJudged()}">
+                <input type="radio" class="card-input-element d-none" name="winner" th:value="${wc.getText()}">
+                <div class="card card-body bg-light whitecard"><span th:text="${wc.getText()}"></span> </div>
             </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="winner" value="answer2">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
-            <label>
-                <input type="radio" class="card-input-element d-none" name="winner" value="answer3">
-                <div class="card card-body bg-light whitecard">White Card</div>
-            </label>
+
+<!--            <label>-->
+<!--                <input type="radio" class="card-input-element d-none" name="winner" value="answer1">-->
+<!--                <div class="card card-body bg-light whitecard">White Card</div>-->
+<!--            </label>-->
 
             <br>
             <button class="btn btn-primary" type="submit">Submit form</button>
@@ -35,34 +29,18 @@
 <div th:unless="${user.id == currentGame.currentJudge}"  th:fragment="toplay" class="container whitecards">
     <h2>Select a white card to play</h2>
     <form method="POST" action="/playWhiteCard">
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard1}">
-            <div class="card card-body bg-light whitecard">White Card</div>
+
+        <!--            //for loop here-->
+        <label th:each="cardText : ${currentGame.getHands().get(user.id)}">
+            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${cardText}">
+            <div class="card card-body bg-light whitecard"><span th:text="${cardText}">white card text</span> </div>
         </label>
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard2}">
-            <div class="card card-body bg-light whitecard">White Card</div>
-        </label>
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard3}">
-            <div class="card card-body bg-light whitecard">White Card</div>
-        </label>
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard4}">
-            <div class="card card-body bg-light whitecard">White Card</div>
-        </label>
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard5}">
-            <div class="card card-body bg-light whitecard">White Card</div>
-        </label>
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard6}">
-            <div class="card card-body bg-light whitecard">White Card</div>
-        </label>
-        <label>
-            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${wcard7}">
-            <div class="card card-body bg-light whitecard">White Card</div>
-        </label>
+        
+<!--        <label>-->
+<!--            <input type="radio" class="card-input-element d-none" name="whitecard" th:value="${currentGame.getHands().get(user.id).get(0)}">-->
+<!--            <div class="card card-body bg-light whitecard"><span th:text="${currentGame.getHands().get(user.id).get(0)}">white card text</span> </div>-->
+<!--        </label>-->
+
 
         <br>
         <button class="btn btn-primary" type="submit">Submit form</button>

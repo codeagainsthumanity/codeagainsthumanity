@@ -20,6 +20,7 @@ public class WhiteCard {
 //    Deck deck;
 
     //constructor
+    public WhiteCard(){};
     public WhiteCard(String text) {
         this.text = text;
     }

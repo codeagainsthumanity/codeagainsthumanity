@@ -84,6 +84,16 @@ public class ApplicationUserController {
         //use method to add the method to the users list of games
         user.addToMyGames(gameToJoin);
 
+        //give the user a hand
+        List<String> hand = new ArrayList<>();
+        for (int i = 0 ; i < 7 ; i ++){
+            WhiteCard wc = gameToJoin.randomWhiteCard();
+            hand.add(wc.getText());
+        }
+
+        //then push hand into games hashmap, called hands.
+        gameToJoin.getHands().put(user.getId(),hand);
+
         newStatus.setStatusCode(1); //status code for a joining user is 1
 //        status.set
         newStatus.setGame(gameToJoin);
