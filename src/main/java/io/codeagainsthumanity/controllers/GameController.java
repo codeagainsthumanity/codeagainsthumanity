@@ -49,6 +49,9 @@ public class GameController {
 
         m.addAttribute("principalUser", p);
         double gameCode = Math.random() * 100;
+        //TODO: check for double hits on this with maybe some math, i don't know man.
+        //TODO: or just check for that gamecode, if it returns null great, if its already there, call method
+        // for game code again
         Game newGame = new Game(gameOwner, gameCode);
         Status status = new Status();
         //use method to add the method to the users list of games
@@ -67,6 +70,7 @@ public class GameController {
         Boolean bool = true;
         newGame.setBooleanToSubmitted( gameOwner.getId(),bool);
         //give the user a hand
+        //TODO: this can be a method!
         List<String> hand = new ArrayList<>();
         for (int i = 0 ; i < 7 ; i ++){
             WhiteCard wc = newGame.randomWhiteCard();

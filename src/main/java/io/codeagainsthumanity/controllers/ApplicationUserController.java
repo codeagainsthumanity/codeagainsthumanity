@@ -44,7 +44,11 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/aboutUs")
-    public String getAboutUsPage() {
+    public String getAboutUsPage(Principal p, Model m) {
+        ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
+
+        m.addAttribute("user", user);
+        m.addAttribute("principalUser", p);
         return "about";
     }
 

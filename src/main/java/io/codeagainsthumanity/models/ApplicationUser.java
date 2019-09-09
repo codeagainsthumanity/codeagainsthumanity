@@ -33,6 +33,7 @@ public class ApplicationUser implements UserDetails {
             inverseJoinColumns = @JoinColumn(name="player", referencedColumnName = "id")
             )
     List<Game> myGames;
+    //TODO: remove "game" and take it down a notch to "string" of "gamecode"
 
 
     // constructors

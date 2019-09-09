@@ -87,6 +87,8 @@ public class DecksController {
         //added to avoid an error.
         whiteCardRepository.save(wc);
 
+
+        //TODO: rewrite this with just .getIndexOf(), then .get()
         //user draws new card
         List<String> hand = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
@@ -100,6 +102,9 @@ public class DecksController {
                 hand.add(randomString);
             }
         }
+
+
+
 
         //then push hand into games hashmap, called hands.
         game.getHands().put(user.getId(), hand);
