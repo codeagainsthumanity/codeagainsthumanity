@@ -30,24 +30,6 @@ public class ApplicationUserController {
     @Autowired
     StatusRepository statusRepository;
 
-    @GetMapping ("/login")
-    public String getLoginPage(Principal p, Model m){
-        m.addAttribute("principalUser", p);
-        return "login";
-    }
-
-    @GetMapping ("/registration")
-    public String getRegistraionPage(Principal p, Model m){
-        m.addAttribute("principalUser", p);
-        return "registration";
-
-    }
-
-    @GetMapping("/aboutUs")
-    public String getAboutUsPage() {
-        return "about";
-    }
-
     @GetMapping ("/profile")
     public String getMyProfile (Principal p, Model m) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
@@ -65,6 +47,8 @@ public class ApplicationUserController {
         m.addAttribute("principalUser", p);
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("user", user);
+
+        //maybe call allProfiles
         return "profiles";
     }
 
@@ -77,14 +61,13 @@ public class ApplicationUserController {
         return new RedirectView("/profile");
     }
 
-
-
     @PostMapping ("/joinGame")
     public RedirectView joinGame(double gameCode, Principal p){
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         Game gameToJoin = gameRepository.findByGameCode(gameCode);
         gameToJoin.addPlayer(user);
 
+        //check if part of working code
         Status newStatus = new Status();
         //use method to add the method to the users list of games
         user.addToMyGames(gameToJoin);

@@ -56,27 +56,14 @@ public class DecksController {
 
         return new RedirectView(("/game/" + gameCode));
     }
-    //passing from html we get a maybe string? of some value from the form,
-    //wc1 through wc7.  the name on a radio button is shared, but id unique.
-
-    //the game owns the decks, active and previous cards, variables.
-
-//        gameToJoin.addPlayer(user);
-//        //use method to add the method to the users list of games
-//        user.addToMyGames(gameToJoin);
-//        //save databases
-//        gameRepository.save(gameToJoin);
-    //applicationUserRepository.save(user);
 
     @PostMapping("/playWhiteCard")
     public RedirectView playerWhiteCard(String gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
 
-        System.out.println("Choice" + choice);
-
         //cast string to double
         double dgc = Double.parseDouble(gameCode);
-        System.out.println("DGC: " + dgc);
+
         //find game by double game code
         Game game = gameRepository.findByGameCode(dgc);
 
@@ -92,6 +79,7 @@ public class DecksController {
         whiteCardRepository.save(wc);
 
         //user draws new card
+        //TODO remove cards from deck
         List<String> hand = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             String cardString = game.getHands().get(user.getId()).get(i);

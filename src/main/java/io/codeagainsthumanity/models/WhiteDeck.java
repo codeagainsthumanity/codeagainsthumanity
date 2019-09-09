@@ -12,8 +12,6 @@ public class WhiteDeck {
     }
 
     //sets and gets
-
-
     public ArrayList<String> getWhiteCards() {
         return whiteCards;
     }

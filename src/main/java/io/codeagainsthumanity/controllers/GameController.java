@@ -93,43 +93,4 @@ public class GameController {
         return "gameroom";
     }
 
-
-
-    //TODO:
-    // joinGame Post route(pass in current user)
-    // Use setter of game instance into its player's lists
-    // save game instance in repo
-
-    // black card will be automatically be picked
-    // each time a judge is chosen
-
-    //white cards will persist for players,
-    // judge will not have access to white cards during their turn
-
-    //route needed for the submit of white card by players, not available for judge
-//    @PostMapping("/submitWhiteCard")
-
-    // and a route for the winning card submitted by judge, not available for players
-//    @PostMapping("submitWinningCard")
-//
-//
-//    public String leaderboardUpdate() {
-//        //leaderboard will update with last winning combo
-//        // winningCard is the whitecard selected by the judge
-//        //leaderBoardString will equal currentBlackCard + winningCard
-//        //if winningCard is true
-//        //        leaderBoardString now equals white card and black card combo.
-//        // return leaderBoardString;
-//    }
-//
-//    //Status board will update with messages like, waiting for #of players
-//    public String statusBoardUpdate() {
-//        // If whitecards from at least one player is available,
-//        // judge and players should see a message like
-//        // "Waiting for {3} of {4} players"
-//        //judge can pick a winner at any time to keep games going so
-//        //the winning selection button is also a round ending button
-//    }
-
-
 }

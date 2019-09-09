@@ -11,22 +11,12 @@ public class BlackCard {
     String text;
     int pick;
 
-//    @ManyToOne
-//    Game gameInstance;
-
-//    @ManyToOne
-//    ApplicationUser player;
-
-//    @ManyToOne
-//    Deck deck;
-
-
     public BlackCard(String text, int pick) {
         this.text = text;
         this.pick = pick;
     }
-
     public BlackCard(){}
+
     //getters and setters
     public long getId() {
         return id;
@@ -35,21 +25,6 @@ public class BlackCard {
     public void setId(long id) {
         this.id = id;
     }
-
-
-//    public Game getGameInstance() {
-//        return gameInstance;
-//    }
-//
-//
-//    public ApplicationUser getPlayer() {
-//        return player;
-//    }
-//
-//    public void setPlayer(ApplicationUser player) {
-//        this.player = player;
-//    }
-
 
     public String getText() {
         return text;

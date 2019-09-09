@@ -161,7 +161,7 @@ public class Game {
 
     }
 
-
+//This should go into the White Deck Model
     public WhiteCard randomWhiteCard(){
         //get this deck
         List<WhiteCard> w = this.getWhiteDeck();
@@ -174,6 +174,7 @@ public class Game {
         return wc;
     }
 
+    //This should go into the Black Deck Model
     public BlackCard randomBlackCard(){
         //get this deck
         List<BlackCard> b = this.getBlackDeck();
@@ -196,7 +197,6 @@ public class Game {
         return r.nextInt((max - min) + 1) + min;
     }
 
-
     //gets and sets
 
     public HashMap<Long, List<String>> getHands() {
@@ -209,17 +209,13 @@ public class Game {
 
     public void swapJudge() {
         int idx = findPlayerById(this.currentJudge);
-        System.out.println("we needa swap" + this.currentJudge);
-        System.out.println("index is " + idx);
+
         if (idx == this.players.size() - 1) {
             this.currentJudge = this.players.get(0).id;
-            System.out.println("end of list" + this.currentJudge);
         }
         else {
             this.currentJudge = this.players.get(idx + 1).id;
-            System.out.println("somewhere over the rainbow" + this.currentJudge);
         }
-
     }
 
     public int findPlayerById(long currentJudgeId) {

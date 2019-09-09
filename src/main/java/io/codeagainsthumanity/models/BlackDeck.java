@@ -15,7 +15,6 @@ public class BlackDeck {
 
     //sets and gets
 
-
     public ArrayList<BlackCard> getBlackCards() {
         return blackCards;
     }
