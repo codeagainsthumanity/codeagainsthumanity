@@ -12,6 +12,12 @@ import java.util.*;
 @Entity
 public class Game {
 
+    // Discussed creating a GameUser Class to keep track of data that is currently being held in the following variables:
+    // long currentJudge
+    // HashMap<Long, List<String>> hands
+    // HashMap<Long, Boolean> submitted
+    // List<ApplicationUser> players --> this would turn into a List<GameUser> players??
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
