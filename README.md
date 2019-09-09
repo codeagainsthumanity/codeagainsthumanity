@@ -25,7 +25,7 @@ Code Against Humanity is a web version of the popular game, [Cards Against Human
 - [Team Agreement](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/master/projectdocs/teamAgreement.md)
 - [Conflict Plan](https://github.com/codeagainsthumanity/codeagainsthumanity/blob/master/projectdocs/confilctPlan.md)
 - [Trello Board](https://trello.com/invite/b/zFg0OoMm/27a4a4005d314d63934ae4a0ae3bd995/sudobangbang)
-- [ER Diagram](https://app.sqldbm.com/PostgreSQL/Edit/p77889/)
+- [ER Diagram](https://app.sqldbm.com/PostgreSQL/Share/s7O5SdHwGNH9D_5TqsnEf0GFrngIE8md_DYjF4jNYw0)
 
 
 ## Screenshots
