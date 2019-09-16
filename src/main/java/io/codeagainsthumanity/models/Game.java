@@ -224,6 +224,8 @@ public class Game {
             this.currentJudge = this.players.get(idx + 1).id;
             System.out.println("somewhere over the rainbow" + this.currentJudge);
         }
+        // the other important step here is to loop through all the statuses and
+        // set them to be "waiting".
 
     }
 

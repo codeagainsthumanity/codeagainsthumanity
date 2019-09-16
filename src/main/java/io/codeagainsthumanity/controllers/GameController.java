@@ -56,6 +56,8 @@ public class GameController {
 
         m.addAttribute("currentGame", newGame);
 
+        // This feels almost exactly like the joinGame route; it feels like a bunch of that logic
+        // could be combined.
         status.setStatusCode(0); //status code for first player is set to 0
 //        status.set
         status.setGame(newGame);

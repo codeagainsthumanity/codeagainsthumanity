@@ -58,6 +58,7 @@ public class ApplicationUserController {
         return "profile";
     }
 
+    // I'm not sure why this route exists in your app.
     @GetMapping("/profiles")
     public String getAllProfiles(Principal p, Model m) {
         List<ApplicationUser> users = applicationUserRepository.findAll();
@@ -79,15 +80,13 @@ public class ApplicationUserController {
 
 
 
+    // Not sure why this is in ApplicationUserController, especially since
+    // there's a TODO in GameController for joining a game.
     @PostMapping ("/joinGame")
     public RedirectView joinGame(double gameCode, Principal p){
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
         Game gameToJoin = gameRepository.findByGameCode(gameCode);
         gameToJoin.addPlayer(user);
-
-        Status newStatus = new Status();
-        //use method to add the method to the users list of games
-        user.addToMyGames(gameToJoin);
 
         //give the user a hand
         List<String> hand = new ArrayList<>();
@@ -98,8 +97,8 @@ public class ApplicationUserController {
         //then push hand into games hashmap, called hands.
         gameToJoin.getHands().put(user.getId(),hand);
 
+        Status newStatus = new Status();
         newStatus.setStatusCode(1); //status code for a joining user is 1
-//        status.set
         newStatus.setGame(gameToJoin);
         newStatus.setPlayer(user);
         //save databases

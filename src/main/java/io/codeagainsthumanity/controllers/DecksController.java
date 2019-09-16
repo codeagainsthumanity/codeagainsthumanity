@@ -24,6 +24,8 @@ public class DecksController {
     WhiteCardRepository whiteCardRepository;
 
 
+    // A bunch of the logic in here feels like it belongs in the swapJudge() method;
+    // I've tried to point out the specific pieces.
     @PostMapping("/judgeWhiteCard")
     public RedirectView judgeWhiteCard(double gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
@@ -36,13 +38,15 @@ public class DecksController {
         game.updateBlackCardToBeJudgedAndPreviousBlack();
 
         //submitted now equals false
-        // can simplify it a little bit
+        // this seems like it could be part of the game.swapJudge() method
         game.setBooleanToSubmitted(user.getId(), false);
 
            //give the user a hand
         // shouldn't the user have already had a hand?
         // this means that they lose their hand/get an entirely new hand after
         // judging, which is a little sad.
+        // This feels like something that belongs in the model too, inside of
+        // the swapJudge() method.
         List<String> hand = new ArrayList<>();
 
         for (int i = 0; i < 7; i++) {
@@ -53,6 +57,7 @@ public class DecksController {
         game.getHands().put(user.getId(), hand);
 
         game.swapJudge();
+        // this also feels like part of the swapJudge() method
         List<WhiteCard> emtpy = new ArrayList<>();
         game.setToBeJudged(emtpy);
         gameRepository.save(game);
@@ -71,6 +76,8 @@ public class DecksController {
 //        gameRepository.save(gameToJoin);
     //applicationUserRepository.save(user);
 
+
+    // Your logic here is a little out of order and hard to follow, but solid.
     @PostMapping("/playWhiteCard")
     public RedirectView playerWhiteCard(String gameCode, Principal p, String choice) {
         ApplicationUser user = applicationUserRepository.findByUsername(p.getName());
@@ -88,13 +95,14 @@ public class DecksController {
         WhiteCard wc = new WhiteCard(choice);
         game.getToBeJudged().add(wc);
         // player hand submitted is true and their hand/form is hidden until judged
-        Boolean bool = true;
-        game.setBooleanToSubmitted(user.getId(), bool);
+        game.setBooleanToSubmitted(user.getId(), true);
 
         //added to avoid an error.
         whiteCardRepository.save(wc);
 
         //user draws new card
+        // couldn't we just remove that one white card from the hand,
+        // then add a new one without needing to loop?
         List<String> hand = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             String cardString = game.getHands().get(user.getId()).get(i);

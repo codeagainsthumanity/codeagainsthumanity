@@ -14,7 +14,7 @@ public class Status {
     long id;
 
     int statusCode;
-    // ArrayList of status codes
+    // status codes
     // 0: You're the judge and waiting for players to play their whitecard
     // 1: Player: Time to play a white card
     // 2: Waiting to be judged
