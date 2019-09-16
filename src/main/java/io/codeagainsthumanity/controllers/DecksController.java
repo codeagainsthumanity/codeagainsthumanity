@@ -36,10 +36,13 @@ public class DecksController {
         game.updateBlackCardToBeJudgedAndPreviousBlack();
 
         //submitted now equals false
-        Boolean bool = false;
-        game.setBooleanToSubmitted(user.getId(), bool);
+        // can simplify it a little bit
+        game.setBooleanToSubmitted(user.getId(), false);
 
            //give the user a hand
+        // shouldn't the user have already had a hand?
+        // this means that they lose their hand/get an entirely new hand after
+        // judging, which is a little sad.
         List<String> hand = new ArrayList<>();
 
         for (int i = 0; i < 7; i++) {

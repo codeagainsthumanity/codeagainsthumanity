@@ -104,6 +104,9 @@ public class PopulateDeckGSON {
         return b.get(index);
     }
 
+    // the fact that this code shows up a couple of times in your code means
+    // it could reasonably live in in a Utils.java file instead, to be used in
+    // either/both of these classes.
     //sauce: https://www.mkyong.com/java/java-generate-random-integers-in-a-range/
     private static int getRandomNumberInRange(int min, int max) {
 

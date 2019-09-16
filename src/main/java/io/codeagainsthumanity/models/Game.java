@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.sql.Time;
 import java.util.*;
 
+// Overall, this model is really nice! Definitely avoids doing normal relationshiip
+// mapping in several spots, but I like that it has so many instance methods for
+// helping to update game state; that really helps make your controllers feel smoother.
 @Entity
 public class Game {
 
@@ -18,8 +21,11 @@ public class Game {
     boolean showRules;
     // creating a player object that will be the judge
 
+    // why is this a long and not an actual ApplicationUser instance?
     long currentJudge;
 
+    // won't this always be immediately reset to false as soon as it's true?
+    // feels like it's an extra bit of game state.
     // true, judge has picked winner and will not be judge anymore, false- players or judge are waiting for cards
     boolean hasBeenJudged;
 
@@ -69,11 +75,6 @@ public class Game {
 
     @ManyToMany (mappedBy = "myGames")
     List<ApplicationUser> players;
-
-
-//    List<Boolean> submitted;
-
-
     //constructors
     public Game(){};
 
@@ -208,6 +209,10 @@ public class Game {
     }
 
     public void swapJudge() {
+        // it seems like another way to accomplish this would be to have the judge
+        // variable keep track of the index in the list where the current judge
+        // lives, and to increment that index; then you wouldn't have to do as
+        // much logic here.
         int idx = findPlayerById(this.currentJudge);
         System.out.println("we needa swap" + this.currentJudge);
         System.out.println("index is " + idx);

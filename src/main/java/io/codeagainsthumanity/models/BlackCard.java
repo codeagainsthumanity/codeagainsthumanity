@@ -10,15 +10,7 @@ public class BlackCard {
     long id;
     String text;
     int pick;
-
-//    @ManyToOne
-//    Game gameInstance;
-
-//    @ManyToOne
-//    ApplicationUser player;
-
-//    @ManyToOne
-//    Deck deck;
+    // lots of leftover relationship code in this class, and in many models
 
 
     public BlackCard(String text, int pick) {
@@ -35,20 +27,6 @@ public class BlackCard {
     public void setId(long id) {
         this.id = id;
     }
-
-
-//    public Game getGameInstance() {
-//        return gameInstance;
-//    }
-//
-//
-//    public ApplicationUser getPlayer() {
-//        return player;
-//    }
-//
-//    public void setPlayer(ApplicationUser player) {
-//        this.player = player;
-//    }
 
 
     public String getText() {
